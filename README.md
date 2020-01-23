@@ -14,7 +14,7 @@ Persian Data Library is a library that can be convert **Gregorian** (Gregorian) 
 ## Persian Date Public Version
 | Target | Branch | Version | Download link | Total downloads |
 | ------ | ------ | ------ | ------ | ------ |
-| Nuget | master | v1.0.0 | [![NuGet](https://img.shields.io/nuget/v/PersianDateShamsi.svg)](https://www.nuget.org/packages/InstagramApiSharp) | [![NuGet downloads](https://img.shields.io/nuget/dt/PersianDateShamsi.svg)](https://www.nuget.org/packages/PersianDateShamsi) |
+| Nuget | master | v1.0.0 | [![NuGet](https://img.shields.io/nuget/v/PersianDateShamsi.svg)](https://www.nuget.org/packages/PersianDateShamsi) | [![NuGet downloads](https://img.shields.io/nuget/dt/PersianDateShamsi.svg)](https://www.nuget.org/packages/PersianDateShamsi) |
 | Release | master | v1.0.0 | [![Release](http://s9.picofile.com/file/8353468992/releases.PNG)](https://github.com/hootanht/PrsianDate) | |
 
 ## Cross Platform
