@@ -16,6 +16,7 @@
     <PackageTags>persian,persian calender,persian date,shamsi,jalali</PackageTags>
     <PackageReleaseNotes>first release</PackageReleaseNotes>
     <NeutralLanguage>en-US</NeutralLanguage>
+    <PackageProjectUrl>https://github.com/hootanht/PrsianDate</PackageProjectUrl>
   </PropertyGroup>
 
   <ItemGroup>
