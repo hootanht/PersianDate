@@ -2,7 +2,7 @@
 
 ![Persian Date Library](https://lh3.googleusercontent.com/p_InfUloerXCEMJLLGA4n8HAQT7yR1kTn53cpYwFlFHkqa9TlaXE9K6BVef6i19JJzo=s180-rw)
 
-Persian Data Library is a library that can be convert **Gregorian** (Gregorian) year to **Solar Hijri** (Shamsi) year in simplest way!
+Persian Data Library is a library that can be convert **Gregorian** (Milady) year to **Solar Hijri** (Shamsi) year in simplest way!
 
 -------------------------
 
