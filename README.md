@@ -25,6 +25,7 @@ Persian Data Library is a library that can be convert **Gregorian** (Milady) yea
 
 ## Code Example
 
+    ```c#
     PersianDateShamsi persianDateShamsi = new PersianDateShamsi();
     
     Console.WriteLine(await persianDateShamsi.GetShamsiYearAsync(DateTime.Now));
@@ -41,8 +42,10 @@ Persian Data Library is a library that can be convert **Gregorian** (Milady) yea
     
     Console.WriteLine(await persianDateShamsi.GetShamsiDayShortNameAsync(DateTime.Now));
     //Result : پ
+    ```
 Extension Method For DateTime
 
+    ```c#
     Console.WriteLine(await DateTime.Now.ToShamsiDate());
     //Result : 1398/11/03
     
@@ -51,6 +54,7 @@ Extension Method For DateTime
     
     Console.WriteLine(await DateTime.Now.ToLongShamsiDate());
     //Result : پنجشنبه 3 بهمن 1398
+    ```
     
 
 
@@ -59,19 +63,3 @@ Extension Method For DateTime
 | Name | Github | Email | Telegram |
 | ------ | ------ | ------ | ------ |
 | Hootan Hemmati | [@hootanht](https://github.com/hootanht) | [hootanhemmati@outlook.com](mailto:hootanhemmati@outlook.com) | https://t.me/hootanht |
-```c#
-var api = InstaApiBuilder.CreateBuilder()
-                // required
-                .SetUser(new UserSessionData(...Your user...))
-                // optional
-                .UseLogger(new SomeLogger())
-                // optional
-                .UseHttpClient(new SomeHttpClient())
-                // optional
-                .UseHttpClientHandler(httpHandlerWithSomeProxy)
-                // optional
-                .SetRequestDelay(new SomeRequestDelay())
-                // optional
-                .SetApiVersion(SomeApiVersion)
-                .Build();
-```
