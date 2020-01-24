@@ -1,26 +1,25 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.0</TargetFramework>
-    <TargetFramework>net452</TargetFramework>
-    <TargetFramework>netstandard2.1</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <AssemblyName>PersianDate</AssemblyName>
     <RootNamespace>PersianDate</RootNamespace>
     <Authors>hootanht</Authors>
-    <PackageIcon>unnamed.png</PackageIcon>
+    <PackageIcon>icon.png</PackageIcon>
     <PackageIconUrl />
     <Description>Persian Data Library is a library that can be convert Gregorian (Gregorian) year to Solar Hijri (Shamsi) year in simplest way!</Description>
     <Copyright>© 2020</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageId>PersianDateShamsi</PackageId>
     <PackageTags>persian,persian calender,persian date,shamsi,jalali</PackageTags>
-    <PackageReleaseNotes>first release</PackageReleaseNotes>
+    <PackageReleaseNotes>Change .Net Standard 2.1 To 2.0</PackageReleaseNotes>
     <NeutralLanguage>en-US</NeutralLanguage>
     <PackageProjectUrl>https://github.com/hootanht/PrsianDate</PackageProjectUrl>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="..\..\..\..\Desktop\unnamed.png">
+    <None Include="Icon\icon.png">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>

@@ -10,20 +10,22 @@ namespace PersianDateTests
     [TestClass]
     public class ToShamsiTest
     {
+        //My Birthday
+        DateTime dateTime = new DateTime(1998, 1, 11);
         [TestMethod]
-        public async Task ToShamsiDateTest()
+        public async Task ToShamsiDateAsyncTest()
         {
-            Assert.AreEqual("1398/11/03",await DateTime.Now.ToShamsiDate());
+            Assert.AreEqual("1376/10/21", await dateTime.ToShamsiDateAsync());
         }
         [TestMethod]
-        public async Task ToShortShamsiDateTest()
+        public async Task ToShortShamsiDateAsyncTest()
         {
-            Assert.AreEqual("98/11/03", await DateTime.Now.ToShortShamsiDate());
+            Assert.AreEqual("76/10/21", await dateTime.ToShortShamsiDateAsync());
         }
         [TestMethod]
-        public async Task ToLongShamsiDateTest()
+        public async Task ToLongShamsiDateAsyncTest()
         {
-            Assert.AreEqual("پنجشنبه 3 بهمن 1398", await DateTime.Now.ToLongShamsiDate());
+            Assert.AreEqual("يكشنبه 21 دی 1376", await dateTime.ToLongShamsiDateAsync());
         }
     }
 }
