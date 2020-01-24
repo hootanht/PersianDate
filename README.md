@@ -21,7 +21,15 @@ Persian Data Library is a library that can be convert **Gregorian** (Milady) yea
 
 | Platform | Supported Version |
 | ------ | ------ |
-| .NET Standard | 2.1 |
+| .NET Framework | 4.6.1 Or Higher|
+| .NET Standard | 2.0 Or Higher|
+| .NET Core | 2.0 Or Higher|
+| Mono | 5.4 Or Higher|
+| Xamarin.iOS | 10.14 Or Higher|
+| Xamarin.Mac | 3.8 Or Higher|
+| Xamarin.Android | 8.0 Or Higher|
+| Universal Windows Platform (UWP) | 10.0.16299 Or Higher|
+| Unity | 2018.1 Or Higher|
 
 ## Code Example
 
@@ -58,6 +66,10 @@ Extension Method For DateTime
     //Result : پنجشنبه 3 بهمن 1398
 ```
 
+## Version changes
+
+v1.0.1
+-Change .Net Standard 2.1 To 2.0 To Support More Platforms
 ## Developer
 
 | Name | Github | Email | Telegram |
