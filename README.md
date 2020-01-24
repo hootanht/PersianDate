@@ -59,3 +59,19 @@ Extension Method For DateTime
 | Name | Github | Email | Telegram |
 | ------ | ------ | ------ | ------ |
 | Hootan Hemmati | [@hootanht](https://github.com/hootanht) | [hootanhemmati@outlook.com](mailto:hootanhemmati@outlook.com) | https://t.me/hootanht |
+```c#
+var api = InstaApiBuilder.CreateBuilder()
+                // required
+                .SetUser(new UserSessionData(...Your user...))
+                // optional
+                .UseLogger(new SomeLogger())
+                // optional
+                .UseHttpClient(new SomeHttpClient())
+                // optional
+                .UseHttpClientHandler(httpHandlerWithSomeProxy)
+                // optional
+                .SetRequestDelay(new SomeRequestDelay())
+                // optional
+                .SetApiVersion(SomeApiVersion)
+                .Build();
+```
