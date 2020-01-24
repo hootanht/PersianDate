@@ -24,9 +24,8 @@ Persian Data Library is a library that can be convert **Gregorian** (Milady) yea
 | .NET Standard | 2.1 |
 
 ## Code Example
-
-    ```c#
-    PersianDateShamsi persianDateShamsi = new PersianDateShamsi();
+```c#
+PersianDateShamsi persianDateShamsi = new PersianDateShamsi();
     
     Console.WriteLine(await persianDateShamsi.GetShamsiYearAsync(DateTime.Now));
     //Result : 1398
@@ -41,11 +40,11 @@ Persian Data Library is a library that can be convert **Gregorian** (Milady) yea
     //Result : پنجشنبه
     
     Console.WriteLine(await persianDateShamsi.GetShamsiDayShortNameAsync(DateTime.Now));
-    //Result : پ
-    ```
+    //Result : 
+```
 Extension Method For DateTime
+```c#
 
-    ```c#
     Console.WriteLine(await DateTime.Now.ToShamsiDate());
     //Result : 1398/11/03
     
@@ -54,8 +53,7 @@ Extension Method For DateTime
     
     Console.WriteLine(await DateTime.Now.ToLongShamsiDate());
     //Result : پنجشنبه 3 بهمن 1398
-    ```
-    
+```
 
 
 ## Developer
