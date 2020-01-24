@@ -56,13 +56,13 @@ Extension Method For DateTime
 
 ```c#
 
-    Console.WriteLine(await DateTime.Now.ToShamsiDate());
+    Console.WriteLine(await DateTime.Now.ToShamsiDateAsync());
     //Result : 1398/11/03
     
-    Console.WriteLine(await DateTime.Now.ToShortShamsiDate());
+    Console.WriteLine(await DateTime.Now.ToShortShamsiDateAsync());
     //Result : 98/11/03
     
-    Console.WriteLine(await DateTime.Now.ToLongShamsiDate());
+    Console.WriteLine(await DateTime.Now.ToLongShamsiDateAsync());
     //Result : پنجشنبه 3 بهمن 1398
 ```
 
