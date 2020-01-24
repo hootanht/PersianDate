@@ -15,7 +15,7 @@
     <PackageReleaseNotes>Change .Net Standard 2.1 To 2.0</PackageReleaseNotes>
     <NeutralLanguage>en-US</NeutralLanguage>
     <PackageProjectUrl>https://github.com/hootanht/PrsianDate</PackageProjectUrl>
-    <Version>1.0.1</Version>
+    <Version>1.0.2</Version>
   </PropertyGroup>
 
   <ItemGroup>

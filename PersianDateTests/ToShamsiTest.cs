@@ -1,8 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
 using PersianDate;
 
 namespace PersianDateTests
@@ -13,19 +10,19 @@ namespace PersianDateTests
         //My Birthday
         DateTime dateTime = new DateTime(1998, 1, 11);
         [TestMethod]
-        public async Task ToShamsiDateAsyncTest()
+        public void ToShamsiDateTest()
         {
-            Assert.AreEqual("1376/10/21", await dateTime.ToShamsiDateAsync());
+            Assert.AreEqual("1376/10/21", dateTime.ToShamsiDate());
         }
         [TestMethod]
-        public async Task ToShortShamsiDateAsyncTest()
+        public void ToShortShamsiDateTest()
         {
-            Assert.AreEqual("76/10/21", await dateTime.ToShortShamsiDateAsync());
+            Assert.AreEqual("76/10/21", dateTime.ToShortShamsiDate());
         }
         [TestMethod]
-        public async Task ToLongShamsiDateAsyncTest()
+        public void ToLongShamsiDateTest()
         {
-            Assert.AreEqual("يكشنبه 21 دی 1376", await dateTime.ToLongShamsiDateAsync());
+            Assert.AreEqual("يكشنبه 21 دی 1376", dateTime.ToLongShamsiDate());
         }
     }
 }

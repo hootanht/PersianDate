@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PersianDate
 {
@@ -12,30 +9,30 @@ namespace PersianDate
         /// </summary>
         /// <param name="dateTime">Enter The Jalali DateTime</param>
         /// <returns></returns>
-        public async static Task<string> ToShamsiDateAsync(this DateTime dateTime)
+        public static string ToShamsiDate(this DateTime dateTime)
         {
             PersianDateShamsi persianDateShamsi = new PersianDateShamsi();
-            return await persianDateShamsi.GetShamsiYearToStringAsync(dateTime) + "/" + await persianDateShamsi.GetShamsiMonthStringAsync(dateTime) + "/" + await persianDateShamsi.GetShamsiDayStringAsync(dateTime);
+            return persianDateShamsi.GetShamsiYearToString(dateTime) + "/" + persianDateShamsi.GetShamsiMonthString(dateTime) + "/" + persianDateShamsi.GetShamsiDayString(dateTime);
         }
         /// <summary>
         /// Get Short Shamsi Date From Miladi Year
         /// </summary>
         /// <param name="dateTime">Enter The Jalali DateTime</param>
         /// <returns></returns>
-        public async static Task<string> ToShortShamsiDateAsync(this DateTime dateTime)
+        public static string ToShortShamsiDate(this DateTime dateTime)
         {
             PersianDateShamsi persianDateShamsi = new PersianDateShamsi();
-            return await persianDateShamsi.GetShortShamsiYearAsync(dateTime) + "/" + await persianDateShamsi.GetShamsiMonthStringAsync(dateTime) + "/" + await persianDateShamsi.GetShamsiDayStringAsync(dateTime);
+            return persianDateShamsi.GetShortShamsiYear(dateTime) + "/" + persianDateShamsi.GetShamsiMonthString(dateTime) + "/" + persianDateShamsi.GetShamsiDayString(dateTime);
         }
         /// <summary>
         /// Get Long Shamsi Date From Miladi Year
         /// </summary>
         /// <param name="dateTime">Enter The Jalali DateTime</param>
         /// <returns></returns>
-        public async static Task<string> ToLongShamsiDateAsync(this DateTime dateTime)
+        public static string ToLongShamsiDate(this DateTime dateTime)
         {
             PersianDateShamsi persianDateShamsi = new PersianDateShamsi();
-            return await persianDateShamsi.GetShamsiDayNameAsync(dateTime) + " " + await persianDateShamsi.GetShamsiDayAsync(dateTime) + " " + await persianDateShamsi.GetShamsiMonthNameAsync(dateTime) + " " + await persianDateShamsi.GetShamsiYearAsync(dateTime);
+            return persianDateShamsi.GetShamsiDayName(dateTime) + " " + persianDateShamsi.GetShamsiDay(dateTime) + " " + persianDateShamsi.GetShamsiMonthName(dateTime) + " " + persianDateShamsi.GetShamsiYear(dateTime);
         }
     }
 }

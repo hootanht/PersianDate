@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PersianDate
 {
@@ -19,42 +16,27 @@ namespace PersianDate
         /// </summary>
         /// <param name="dateTime">Enter The Jalali DateTime</param>
         /// <returns></returns>
-        public async Task<int> GetShamsiYearAsync(DateTime dateTime)
+        public int GetShamsiYear(DateTime dateTime)
         {
-            int date = 0;
-            await Task.Run(() =>
-            {
-                date = persianCalendar.GetYear(dateTime);
-            });
-            return date;
+            return persianCalendar.GetYear(dateTime);
         }
         /// <summary>
         /// Get Short Shamsi Year From Miladi Year In String
         /// </summary>
         /// <param name="dateTime">Enter The Jalali DateTime</param>
         /// <returns></returns>
-        public async Task<string> GetShortShamsiYearAsync(DateTime dateTime)
+        public string GetShortShamsiYear(DateTime dateTime)
         {
-            string date = "";
-            await Task.Run(() =>
-            {
-                date = dateTime.ToString("yy", CultureInfo.CreateSpecificCulture("fa"));
-            });
-            return date;
+            return dateTime.ToString("yy", CultureInfo.CreateSpecificCulture("fa"));
         }
         /// <summary>
         /// Get Shamsi Year From Miladi Year In String
         /// </summary>
         /// <param name="dateTime">Enter The Jalali DateTime</param>
         /// <returns></returns>
-        public async Task<string> GetShamsiYearToStringAsync(DateTime dateTime)
+        public string GetShamsiYearToString(DateTime dateTime)
         {
-            int date = 0;
-            await Task.Run(() =>
-            {
-                date = persianCalendar.GetYear(dateTime);
-            });
-            return date.ToString();
+            return persianCalendar.GetYear(dateTime).ToString();
         }
         #endregion
 
@@ -64,56 +46,36 @@ namespace PersianDate
         /// </summary>
         /// <param name="dateTime">Enter The Jalali DateTime</param>
         /// <returns></returns>
-        public async Task<int> GetShamsiMonthAsync(DateTime dateTime)
+        public int GetShamsiMonth(DateTime dateTime)
         {
-            int date = 0;
-            await Task.Run(() =>
-            {
-                date = persianCalendar.GetMonth(dateTime);
-            });
-            return date;
+            return persianCalendar.GetMonth(dateTime);
         }
         /// <summary>
         /// Get Shamsi Month Number From Miladi Month In String
         /// </summary>
         /// <param name="dateTime">Enter The Jalali DateTime</param>
         /// <returns></returns>
-        public async Task<string> GetShamsiMonthStringAsync(DateTime dateTime)
+        public string GetShamsiMonthString(DateTime dateTime)
         {
-            int date = 0;
-            await Task.Run(() =>
-            {
-                date = persianCalendar.GetMonth(dateTime);
-            });
-            return date.ToString("00");
+            return persianCalendar.GetMonth(dateTime).ToString("00");
         }
         /// <summary>
         /// Get Shamsi Month From Miladi Month Number
         /// </summary>
         /// <param name="dateTime">Enter The Jalali DateTime</param>
         /// <returns></returns>
-        public async Task<int> GetShamsiMonthBunberAsync(DateTime dateTime)
+        public int GetShamsiMonthBunber(DateTime dateTime)
         {
-            int date = 0;
-            await Task.Run(() =>
-            {
-                date = persianCalendar.GetMonth(dateTime);
-            });
-            return date;
+            return persianCalendar.GetMonth(dateTime);
         }
         /// <summary>
         /// Get Shamsi Month Name From Miladi Month
         /// </summary>
         /// <param name="dateTime">Enter The Jalali DateTime</param>
         /// <returns></returns>
-        public async Task<string> GetShamsiMonthNameAsync(DateTime dateTime)
+        public string GetShamsiMonthName(DateTime dateTime)
         {
-            string fullMonthName = "";
-            await Task.Run(() =>
-            {
-                fullMonthName = dateTime.ToString("MMMM", CultureInfo.CreateSpecificCulture("fa"));
-            });
-            return fullMonthName;
+            return dateTime.ToString("MMMM", CultureInfo.CreateSpecificCulture("fa"));
         }
         #endregion
 
@@ -123,56 +85,36 @@ namespace PersianDate
         /// </summary>
         /// <param name="dateTime">Enter The Jalali DateTime</param>
         /// <returns></returns>
-        public async Task<int> GetShamsiDayAsync(DateTime dateTime)
+        public int GetShamsiDay(DateTime dateTime)
         {
-            int date = 0;
-            await Task.Run(() =>
-            {
-                date = persianCalendar.GetDayOfMonth(dateTime);
-            });
-            return date;
+            return persianCalendar.GetDayOfMonth(dateTime);
         }
         /// <summary>
         /// Get Shamsi Day From Miladi Month In String
         /// </summary>
         /// <param name="dateTime">Enter The Jalali DateTime</param>
         /// <returns></returns>
-        public async Task<string> GetShamsiDayStringAsync(DateTime dateTime)
+        public string GetShamsiDayString(DateTime dateTime)
         {
-            int date = 0;
-            await Task.Run(() =>
-            {
-                date = persianCalendar.GetDayOfMonth(dateTime);
-            });
-            return date.ToString("00");
+            return persianCalendar.GetDayOfMonth(dateTime).ToString("00");
         }
         /// <summary>
         /// Get Shamsi Day Name From Miladi Month
         /// </summary>
         /// <param name="dateTime">Enter The Jalali DateTime</param>
         /// <returns></returns>
-        public async Task<string> GetShamsiDayNameAsync(DateTime dateTime)
+        public string GetShamsiDayName(DateTime dateTime)
         {
-            string fullDayName = "";
-            await Task.Run(() =>
-            {
-                fullDayName = dateTime.ToString("dddd", CultureInfo.CreateSpecificCulture("fa"));
-            });
-            return fullDayName;
+            return dateTime.ToString("dddd", CultureInfo.CreateSpecificCulture("fa"));
         }
         /// <summary>
         /// Get Shamsi Day ShortName From Miladi Month
         /// </summary>
         /// <param name="dateTime">Enter The Jalali DateTime</param>
         /// <returns></returns>
-        public async Task<string> GetShamsiDayShortNameAsync(DateTime dateTime)
+        public string GetShamsiDayShortName(DateTime dateTime)
         {
-            string fullDayName = "";
-            await Task.Run(() =>
-            {
-                fullDayName = dateTime.ToString("dddd", CultureInfo.CreateSpecificCulture("fa"));
-            });
-            return fullDayName.Substring(0, 1);
+            return dateTime.ToString("dddd", CultureInfo.CreateSpecificCulture("fa")).Substring(0, 1);
         }
         #endregion
     }

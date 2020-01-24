@@ -1,10 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PersianDate;
 using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PersianDateTests
 {
@@ -15,54 +11,54 @@ namespace PersianDateTests
         DateTime dateTime = new DateTime(1998, 1, 11);
         PersianDateShamsi persianDateShamsi = new PersianDateShamsi();
         [TestMethod]
-        public async Task YearAsyncTest()
+        public void YearTest()
         {
-            Assert.AreEqual(1376,await persianDateShamsi.GetShamsiYearAsync(dateTime));
+            Assert.AreEqual(1376, persianDateShamsi.GetShamsiYear(dateTime));
         }
         [TestMethod]
-        public async Task ShortYearAsyncTest()
+        public void ShortYearTest()
         {
-            Assert.AreEqual("76",await persianDateShamsi.GetShortShamsiYearAsync(dateTime));
+            Assert.AreEqual("76", persianDateShamsi.GetShortShamsiYear(dateTime));
         }
         [TestMethod]
-        public async Task YearStringAsyncTest()
+        public void YearStringTest()
         {
-            Assert.AreEqual("1376",await persianDateShamsi.GetShamsiYearToStringAsync(dateTime));
+            Assert.AreEqual("1376", persianDateShamsi.GetShamsiYearToString(dateTime));
         }
         [TestMethod]
-        public async Task MonthAsyncTest()
+        public void MonthTest()
         {
-            Assert.AreEqual(10,await persianDateShamsi.GetShamsiMonthAsync(dateTime));
+            Assert.AreEqual(10, persianDateShamsi.GetShamsiMonth(dateTime));
         }
         [TestMethod]
-        public async Task MonthStringAsyncTest()
+        public void MonthStringTest()
         {
-            Assert.AreEqual("10",await persianDateShamsi.GetShamsiMonthStringAsync(dateTime));
+            Assert.AreEqual("10", persianDateShamsi.GetShamsiMonthString(dateTime));
         }
         [TestMethod]
-        public async Task MonthNameAsyncTest()
+        public void MonthNameTest()
         {
-            Assert.AreEqual("دی",await persianDateShamsi.GetShamsiMonthNameAsync(dateTime));
+            Assert.AreEqual("دی", persianDateShamsi.GetShamsiMonthName(dateTime));
         }
         [TestMethod]
-        public async Task DayAsyncTest()
+        public void DayTest()
         {
-            Assert.AreEqual(21,await persianDateShamsi.GetShamsiDayAsync(dateTime));
+            Assert.AreEqual(21, persianDateShamsi.GetShamsiDay(dateTime));
         }
         [TestMethod]
-        public async Task DayStringAsyncTest()
+        public void DayStringTest()
         {
-            Assert.AreEqual("21",await persianDateShamsi.GetShamsiDayStringAsync(dateTime));
+            Assert.AreEqual("21", persianDateShamsi.GetShamsiDayString(dateTime));
         }
         [TestMethod]
-        public async Task DayNameAsyncTest()
+        public void DayNameTest()
         {
-            Assert.AreEqual("يكشنبه", await persianDateShamsi.GetShamsiDayNameAsync(dateTime));
+            Assert.AreEqual("يكشنبه", persianDateShamsi.GetShamsiDayName(dateTime));
         }
         [TestMethod]
-        public async Task DayShortNameAsyncTest()
+        public void DayShortNameTest()
         {
-            Assert.AreEqual("ي", await persianDateShamsi.GetShamsiDayShortNameAsync(dateTime));
+            Assert.AreEqual("ي", persianDateShamsi.GetShamsiDayShortName(dateTime));
         }
     }
 }
