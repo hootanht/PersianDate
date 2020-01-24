@@ -36,19 +36,19 @@ Persian Data Library is a library that can be convert **Gregorian** (Milady) yea
 ```c#
 PersianDateShamsi persianDateShamsi = new PersianDateShamsi();
     
-    Console.WriteLine(await persianDateShamsi.GetShamsiYear(DateTime.Now));
+    Console.WriteLine(persianDateShamsi.GetShamsiYear(DateTime.Now));
     //Result : 1398
     
-    Console.WriteLine(await persianDateShamsi.GetShamsiMonthName(DateTime.Now));
+    Console.WriteLine(persianDateShamsi.GetShamsiMonthName(DateTime.Now));
     //Result : بهمن
     
-    Console.WriteLine(await persianDateShamsi.GetShamsiDayString(DateTime.Now));
+    Console.WriteLine(persianDateShamsi.GetShamsiDayString(DateTime.Now));
     //Result : 03
     
-    Console.WriteLine(await persianDateShamsi.GetShamsiDayName(DateTime.Now));
+    Console.WriteLine(persianDateShamsi.GetShamsiDayName(DateTime.Now));
     //Result : پنجشنبه
     
-    Console.WriteLine(await persianDateShamsi.GetShamsiDayShortName(DateTime.Now));
+    Console.WriteLine(persianDateShamsi.GetShamsiDayShortName(DateTime.Now));
     //Result : پ
 ```
 
@@ -56,13 +56,13 @@ Extension Method For DateTime
 
 ```c#
 
-    Console.WriteLine(await DateTime.Now.ToShamsiDate());
+    Console.WriteLine(DateTime.Now.ToShamsiDate());
     //Result : 1398/11/03
     
-    Console.WriteLine(await DateTime.Now.ToShortShamsiDate());
+    Console.WriteLine(DateTime.Now.ToShortShamsiDate());
     //Result : 98/11/03
     
-    Console.WriteLine(await DateTime.Now.ToLongShamsiDate());
+    Console.WriteLine(DateTime.Now.ToLongShamsiDate());
     //Result : پنجشنبه 3 بهمن 1398
 ```
 
