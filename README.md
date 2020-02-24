@@ -15,7 +15,7 @@ Persian Data Library is a library that can be convert **Gregorian** (Milady) yea
 | Target | Branch | Version | Download link | Total downloads |
 | ------ | ------ | ------ | ------ | ------ |
 | Nuget | master | v1.0.2 | [![NuGet](https://img.shields.io/nuget/v/PersianDateShamsi.svg)](https://www.nuget.org/packages/PersianDateShamsi) | [![NuGet downloads](https://img.shields.io/nuget/dt/PersianDateShamsi.svg)](https://www.nuget.org/packages/PersianDateShamsi) |
-| Release | master | v1.0.2 | [![Build Status](https://dev.azure.com/hootanht/PersianDate/_apis/build/status/PersianDate?branchName=master)](https://dev.azure.com/hootanht/PersianDate/_apis/build/status/PersianDate?branchName=master) | |
+| Release | master | v1.0.2 | [![Build Status](https://dev.azure.com/hootanht/PersianDate/_apis/build/status/PersianDate?branchName=master)](https://hootanht.visualstudio.com/PersianDate) | |
 
 ## Cross Platform
 
