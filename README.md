@@ -67,11 +67,11 @@ Extension Method For DateTime
 ```
 
 ## Version changes
-v1.0.2
+Version 1.0.2
 
 -Improve Flexibility
 
-v1.0.1
+Version 1.0.1
 
 -Change .Net Standard 2.1 To 2.0 To Support More Platforms
 ## Developer [![Twitter Follow](https://img.shields.io/twitter/follow/hootanht?style=social)](https://twitter.com/hootanht)
