@@ -6,10 +6,14 @@ namespace PersianDate
     public class PersianDateShamsi
     {
         PersianCalendar persianCalendar;
+        string[] DaysOfWeek;
+
         public PersianDateShamsi()
         {
             persianCalendar = new PersianCalendar();
+            DaysOfWeek = new string[] { "شنبه", "یک شنبه", "دو شنبه", "سه شنبه", "چهار شنبه", "پنج شنبه", "جمعه" };
         }
+
         #region Year
         /// <summary>
         /// Get Shamsi Year From Miladi Year
@@ -105,7 +109,7 @@ namespace PersianDate
         /// <returns></returns>
         public string GetShamsiDayName(DateTime dateTime)
         {
-            return dateTime.ToString("dddd", CultureInfo.CreateSpecificCulture("fa"));
+            return DaysOfWeek[(int)persianCalendar.GetDayOfWeek(dateTime)];
         }
         /// <summary>
         /// Get Shamsi Day ShortName From Miladi Month
@@ -117,5 +121,22 @@ namespace PersianDate
             return dateTime.ToString("dddd", CultureInfo.CreateSpecificCulture("fa")).Substring(0, 1);
         }
         #endregion
+    }
+
+    public static class ShamsiDateUtilities
+    {
+        private readonly static string[] DaysOfWeek = new string[] { "شنبه", "یک شنبه", "دو شنبه", "سه شنبه", "چهار شنبه", "پنج شنبه", "جمعه" };
+
+        public static string GetDayOfWeekName(DateTime dt)
+        {
+            var pc = new PersianCalendar();
+            return DaysOfWeek[(int)pc.GetDayOfWeek(dt)];
+        }
+
+        public static string GetDayOfWeekShortName(DateTime dt)
+        {
+            var pc = new PersianCalendar();
+            return DaysOfWeek[(int)pc.GetDayOfWeek(dt)];
+        }
     }
 }
