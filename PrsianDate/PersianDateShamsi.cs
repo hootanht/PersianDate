@@ -118,25 +118,8 @@ namespace PersianDate
         /// <returns></returns>
         public string GetShamsiDayShortName(DateTime dateTime)
         {
-            return dateTime.ToString("dddd", CultureInfo.CreateSpecificCulture("fa")).Substring(0, 1);
+            return DaysOfWeek[(int)persianCalendar.GetDayOfWeek(dateTime)].Substring(0, 1);
         }
         #endregion
-    }
-
-    public static class ShamsiDateUtilities
-    {
-        private readonly static string[] DaysOfWeek = new string[] { "شنبه", "یک شنبه", "دو شنبه", "سه شنبه", "چهار شنبه", "پنج شنبه", "جمعه" };
-
-        public static string GetDayOfWeekName(DateTime dt)
-        {
-            var pc = new PersianCalendar();
-            return DaysOfWeek[(int)pc.GetDayOfWeek(dt)];
-        }
-
-        public static string GetDayOfWeekShortName(DateTime dt)
-        {
-            var pc = new PersianCalendar();
-            return DaysOfWeek[(int)pc.GetDayOfWeek(dt)];
-        }
     }
 }
