@@ -15,8 +15,8 @@ namespace PersianDate
         public PersianDateShamsi()
         {
             persianCalendar = new PersianCalendar();
-            DaysOfWeek = new string[] { "شنبه", "یک شنبه", "دو شنبه", "سه شنبه", "چهار شنبه", "پنج شنبه", "جمعه" };
-            DaysOfWeekShort = new string[] { "ش", "ی", "د", "س", "چ", "پ", "ج" };
+            DaysOfWeek = new string[] { "شنبه", "يكشنبه", "دوشنبه", "سه شنبه", "چهارشنبه", "پنجشنبه", "جمعه" };
+            DaysOfWeekShort = new string[] { "ش", "ي", "د", "س", "چ", "پ", "ج" };
             Months = new string[] { "فروردین", "اردیبهشت", "خرداد", "تیر", "مرداد", "شهریور", "مهر", "آبان", "آذر", "دی", "بهمن", "اسفند" };
         }
 
@@ -87,7 +87,7 @@ namespace PersianDate
         /// <returns></returns>
         public string GetShamsiMonthName(DateTime dateTime)
         {
-            return Months[(int)persianCalendar.GetMonth(dateTime)];
+            return Months[(persianCalendar.GetMonth(dateTime) - 1)];
         }
         #endregion
 
@@ -117,7 +117,7 @@ namespace PersianDate
         /// <returns></returns>
         public string GetShamsiDayName(DateTime dateTime)
         {
-            return DaysOfWeek[(int)persianCalendar.GetDayOfWeek(dateTime)];
+            return DaysOfWeek[(int)persianCalendar.GetDayOfWeek(dateTime) + 1];
         }
         /// <summary>
         /// Get Shamsi Day ShortName From Miladi Month
@@ -126,7 +126,7 @@ namespace PersianDate
         /// <returns></returns>
         public string GetShamsiDayShortName(DateTime dateTime)
         {
-            return DaysOfWeekShort[(int)persianCalendar.GetDayOfWeek(dateTime)];
+            return DaysOfWeekShort[(int)persianCalendar.GetDayOfWeek(dateTime) + 1];
         }
         #endregion
     }
