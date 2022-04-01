@@ -32,7 +32,7 @@ namespace PersianDate
         public static string ToLongShamsiDate(this DateTime dateTime)
         {
             PersianDateShamsi persianDateShamsi = new PersianDateShamsi();
-            return persianDateShamsi.GetShamsiDayName(dateTime) + " " + persianDateShamsi.GetShamsiDay(dateTime) + " " + persianDateShamsi.GetShamsiMonthName(dateTime) + " " + persianDateShamsi.GetShamsiYear(dateTime);
+            return $"{persianDateShamsi.GetShamsiDayName(dateTime)} {persianDateShamsi.GetShamsiDay(dateTime)} {persianDateShamsi.GetShamsiMonthName(dateTime)} {persianDateShamsi.GetShamsiYear(dateTime)}";
         }
     }
 }
