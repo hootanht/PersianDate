@@ -5,14 +5,21 @@ namespace PersianDate
 {
     public class PersianDateShamsi
     {
+        #region Constants
+
         PersianCalendar persianCalendar;
         string[] DaysOfWeek;
+        string[] DaysOfWeekShort;
 
         public PersianDateShamsi()
         {
             persianCalendar = new PersianCalendar();
             DaysOfWeek = new string[] { "شنبه", "یک شنبه", "دو شنبه", "سه شنبه", "چهار شنبه", "پنج شنبه", "جمعه" };
+            DaysOfWeekShort = new string[] { "ش", "ی", "د", "س", "چ", "پ", "ج" };
         }
+
+        #endregion
+
 
         #region Year
         /// <summary>
@@ -118,7 +125,7 @@ namespace PersianDate
         /// <returns></returns>
         public string GetShamsiDayShortName(DateTime dateTime)
         {
-            return DaysOfWeek[(int)persianCalendar.GetDayOfWeek(dateTime)].Substring(0, 1);
+            return DaysOfWeekShort[(int)persianCalendar.GetDayOfWeek(dateTime)];
         }
         #endregion
     }
