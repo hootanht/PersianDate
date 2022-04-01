@@ -10,16 +10,17 @@ namespace PersianDate
         PersianCalendar persianCalendar;
         string[] DaysOfWeek;
         string[] DaysOfWeekShort;
+        string[] Months;
 
         public PersianDateShamsi()
         {
             persianCalendar = new PersianCalendar();
             DaysOfWeek = new string[] { "شنبه", "یک شنبه", "دو شنبه", "سه شنبه", "چهار شنبه", "پنج شنبه", "جمعه" };
             DaysOfWeekShort = new string[] { "ش", "ی", "د", "س", "چ", "پ", "ج" };
+            Months = new string[] { "فروردین", "اردیبهشت", "خرداد", "تیر", "مرداد", "شهریور", "مهر", "آبان", "آذر", "دی", "بهمن", "اسفند" };
         }
 
         #endregion
-
 
         #region Year
         /// <summary>
@@ -86,7 +87,7 @@ namespace PersianDate
         /// <returns></returns>
         public string GetShamsiMonthName(DateTime dateTime)
         {
-            return dateTime.ToString("MMMM", CultureInfo.CreateSpecificCulture("fa"));
+            return Months[(int)persianCalendar.GetMonth(dateTime)];
         }
         #endregion
 
