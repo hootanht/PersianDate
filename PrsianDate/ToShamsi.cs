@@ -12,7 +12,7 @@ namespace PersianDate
         public static string ToShamsiDate(this DateTime dateTime)
         {
             PersianDateShamsi persianDateShamsi = new PersianDateShamsi();
-            return persianDateShamsi.GetShamsiYearToString(dateTime) + "/" + persianDateShamsi.GetShamsiMonthString(dateTime) + "/" + persianDateShamsi.GetShamsiDayString(dateTime);
+            return $"{persianDateShamsi.GetShamsiYear(dateTime)}/{persianDateShamsi.GetShamsiMonthString(dateTime)}/{persianDateShamsi.GetShamsiDayString(dateTime)}";
         }
         /// <summary>
         /// Get Short Shamsi Date From Miladi Year
