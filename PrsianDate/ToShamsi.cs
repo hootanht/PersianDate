@@ -22,7 +22,7 @@ namespace PersianDate
         public static string ToShortShamsiDate(this DateTime dateTime)
         {
             PersianDateShamsi persianDateShamsi = new PersianDateShamsi();
-            return persianDateShamsi.GetShortShamsiYear(dateTime) + "/" + persianDateShamsi.GetShamsiMonthString(dateTime) + "/" + persianDateShamsi.GetShamsiDayString(dateTime);
+            return $"{persianDateShamsi.GetShortShamsiYear(dateTime)}/{persianDateShamsi.GetShamsiMonthString(dateTime)}/{persianDateShamsi.GetShamsiDayString(dateTime)}";
         }
         /// <summary>
         /// Get Long Shamsi Date From Miladi Year
