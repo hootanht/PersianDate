@@ -5,11 +5,23 @@ namespace PersianDate
 {
     public class PersianDateShamsi
     {
+        #region Constants
+
         PersianCalendar persianCalendar;
+        string[] DaysOfWeek;
+        string[] DaysOfWeekShort;
+        string[] Months;
+
         public PersianDateShamsi()
         {
             persianCalendar = new PersianCalendar();
+            DaysOfWeek = new string[] { "شنبه", "يكشنبه", "دوشنبه", "سه شنبه", "چهارشنبه", "پنجشنبه", "جمعه" };
+            DaysOfWeekShort = new string[] { "ش", "ي", "د", "س", "چ", "پ", "ج" };
+            Months = new string[] { "فروردین", "اردیبهشت", "خرداد", "تیر", "مرداد", "شهریور", "مهر", "آبان", "آذر", "دی", "بهمن", "اسفند" };
         }
+
+        #endregion
+
         #region Year
         /// <summary>
         /// Get Shamsi Year From Miladi Year
@@ -27,7 +39,8 @@ namespace PersianDate
         /// <returns></returns>
         public string GetShortShamsiYear(DateTime dateTime)
         {
-            return dateTime.ToString("yy", CultureInfo.CreateSpecificCulture("fa"));
+            var pc = new PersianCalendar();
+            return pc.GetYear(dateTime).ToString().Substring(2, 2);
         }
         /// <summary>
         /// Get Shamsi Year From Miladi Year In String
@@ -75,7 +88,7 @@ namespace PersianDate
         /// <returns></returns>
         public string GetShamsiMonthName(DateTime dateTime)
         {
-            return dateTime.ToString("MMMM", CultureInfo.CreateSpecificCulture("fa"));
+            return Months[(persianCalendar.GetMonth(dateTime) - 1)];
         }
         #endregion
 
@@ -105,7 +118,7 @@ namespace PersianDate
         /// <returns></returns>
         public string GetShamsiDayName(DateTime dateTime)
         {
-            return dateTime.ToString("dddd", CultureInfo.CreateSpecificCulture("fa"));
+            return DaysOfWeek[(int)persianCalendar.GetDayOfWeek(dateTime) + 1];
         }
         /// <summary>
         /// Get Shamsi Day ShortName From Miladi Month
@@ -114,7 +127,7 @@ namespace PersianDate
         /// <returns></returns>
         public string GetShamsiDayShortName(DateTime dateTime)
         {
-            return dateTime.ToString("dddd", CultureInfo.CreateSpecificCulture("fa")).Substring(0, 1);
+            return DaysOfWeekShort[(int)persianCalendar.GetDayOfWeek(dateTime) + 1];
         }
         #endregion
     }
