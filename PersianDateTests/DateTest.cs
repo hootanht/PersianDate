@@ -53,12 +53,12 @@ namespace PersianDateTests
         [TestMethod]
         public void DayNameTest()
         {
-            Assert.AreEqual("يكشنبه", persianDateShamsi.GetShamsiDayName(dateTime));
+            Assert.AreEqual("یکشنبه", persianDateShamsi.GetShamsiDayName(dateTime));
         }
         [TestMethod]
         public void DayShortNameTest()
         {
-            Assert.AreEqual("ي", persianDateShamsi.GetShamsiDayShortName(dateTime));
+            Assert.AreEqual("ی", persianDateShamsi.GetShamsiDayShortName(dateTime));
         }
     }
 }

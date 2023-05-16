@@ -22,7 +22,7 @@ namespace PersianDateTests
         [TestMethod]
         public void ToLongShamsiDateTest()
         {
-            Assert.AreEqual("يكشنبه 21 دی 1376", dateTime.ToLongShamsiDate());
+            Assert.AreEqual("یکشنبه 21 دی 1376", dateTime.ToLongShamsiDate());
         }
     }
 }
