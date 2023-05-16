@@ -8,14 +8,14 @@ Persian Data Library is a library that can be convert **Gregorian** (Milady) yea
 
 | Target | Branch | Version |
 | ------ | ------ | ------ |
-| Github | master | v1.0.2 | 
+| Github | master | v1.0.3 | 
 
 
 ## Persian Date Public Version
 | Target | Branch | Version | Download link | Total downloads |
 | ------ | ------ | ------ | ------ | ------ |
-| Nuget | master | v1.0.2 | [![NuGet](https://img.shields.io/nuget/v/PersianDateShamsi.svg)](https://www.nuget.org/packages/PersianDateShamsi) | [![NuGet downloads](https://img.shields.io/nuget/dt/PersianDateShamsi.svg)](https://www.nuget.org/packages/PersianDateShamsi) |
-| Release | master | v1.0.2 | [![Build Status](https://dev.azure.com/hootanht/PersianDate/_apis/build/status/PersianDate?branchName=master)](https://hootanht.visualstudio.com/PersianDate) | |
+| Nuget | master | v1.0.3 | [![NuGet](https://img.shields.io/nuget/v/PersianDateShamsi.svg)](https://www.nuget.org/packages/PersianDateShamsi) | [![NuGet downloads](https://img.shields.io/nuget/dt/PersianDateShamsi.svg)](https://www.nuget.org/packages/PersianDateShamsi) |
+| Release | master | v1.0.3 | [![Build Status](https://dev.azure.com/hootanht/PersianDate/_apis/build/status/PersianDate?branchName=master)](https://hootanht.visualstudio.com/PersianDate) | |
 
 ## Cross Platform
 
@@ -67,6 +67,10 @@ Extension Method For DateTime
 ```
 
 ## Version changes
+Version 1.0.3
+
+-Change .Net Standard 2.0 To .NET 7.0
+
 Version 1.0.2
 
 -Improve Flexibility
