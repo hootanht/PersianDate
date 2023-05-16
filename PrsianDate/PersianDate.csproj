@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-	  <TargetFramework>net7.0</TargetFramework>
+	  <TargetFrameworks>net7.0;net6.0;net5.0</TargetFrameworks>
     <AssemblyName>PersianDate</AssemblyName>
     <RootNamespace>PersianDate</RootNamespace>
     <Authors>hootanht</Authors>
@@ -18,7 +18,7 @@
     <Version>1.0.3</Version>
     <RepositoryUrl>https://github.com/hootanht/PrsianDate</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <ImplicitUsings>enable</ImplicitUsings>
+    <ImplicitUsings>disable</ImplicitUsings>
   </PropertyGroup>
 
   <ItemGroup>
