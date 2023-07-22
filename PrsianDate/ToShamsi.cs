@@ -8,31 +8,40 @@ namespace PersianDate
         /// Get Shamsi Date From Miladi Year
         /// </summary>
         /// <param name="dateTime">Enter The Jalali DateTime</param>
-        /// <returns></returns>
-        public static string ToShamsiDate(this DateTime dateTime)
+        /// <returns>A string representing the Shamsi date or null if the input is null.</returns>
+        public static string? ToShamsiDate(this DateTime? dateTime)
         {
-            PersianDateShamsi persianDateShamsi = new PersianDateShamsi();
-            return persianDateShamsi.GetShamsiYearToString(dateTime) + "/" + persianDateShamsi.GetShamsiMonthString(dateTime) + "/" + persianDateShamsi.GetShamsiDayString(dateTime);
+            if (dateTime == null) 
+                return null;
+
+            var persianDateShamsi = new PersianDateShamsi();
+            return persianDateShamsi.GetShamsiYearToString(dateTime.Value) + "/" + persianDateShamsi.GetShamsiMonthString(dateTime.Value) + "/" + persianDateShamsi.GetShamsiDayString(dateTime.Value);
         }
         /// <summary>
         /// Get Short Shamsi Date From Miladi Year
         /// </summary>
         /// <param name="dateTime">Enter The Jalali DateTime</param>
         /// <returns></returns>
-        public static string ToShortShamsiDate(this DateTime dateTime)
+        public static string? ToShortShamsiDate(this DateTime? dateTime)
         {
-            PersianDateShamsi persianDateShamsi = new PersianDateShamsi();
-            return persianDateShamsi.GetShortShamsiYear(dateTime) + "/" + persianDateShamsi.GetShamsiMonthString(dateTime) + "/" + persianDateShamsi.GetShamsiDayString(dateTime);
+            if (dateTime == null)
+                return null;
+
+            var persianDateShamsi = new PersianDateShamsi();
+            return persianDateShamsi.GetShortShamsiYear(dateTime.Value) + "/" + persianDateShamsi.GetShamsiMonthString(dateTime.Value) + "/" + persianDateShamsi.GetShamsiDayString(dateTime.Value);
         }
         /// <summary>
         /// Get Long Shamsi Date From Miladi Year
         /// </summary>
         /// <param name="dateTime">Enter The Jalali DateTime</param>
         /// <returns></returns>
-        public static string ToLongShamsiDate(this DateTime dateTime)
+        public static string? ToLongShamsiDate(this DateTime? dateTime)
         {
-            PersianDateShamsi persianDateShamsi = new PersianDateShamsi();
-            return persianDateShamsi.GetShamsiDayName(dateTime) + " " + persianDateShamsi.GetShamsiDay(dateTime) + " " + persianDateShamsi.GetShamsiMonthName(dateTime) + " " + persianDateShamsi.GetShamsiYear(dateTime);
+            if (dateTime == null)
+                return null;
+
+            var persianDateShamsi = new PersianDateShamsi();
+            return persianDateShamsi.GetShamsiDayName(dateTime.Value) + " " + persianDateShamsi.GetShamsiDay(dateTime.Value) + " " + persianDateShamsi.GetShamsiMonthName(dateTime.Value) + " " + persianDateShamsi.GetShamsiYear(dateTime.Value);
         }
     }
 }
