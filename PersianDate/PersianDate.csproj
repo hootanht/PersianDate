@@ -30,6 +30,11 @@
 		<EnablePackageValidation>true</EnablePackageValidation>
 	</PropertyGroup>
 
+	<PropertyGroup>
+		<VersionPrefix>1.0.6</VersionPrefix>
+		<VersionSuffix>ci</VersionSuffix>
+	</PropertyGroup>
+
 	<ItemGroup>
 		<None Include="..\README.md">
 			<Pack>True</Pack>
