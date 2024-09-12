@@ -81,14 +81,8 @@ Version 1.0.1
 
 ## CI Pipeline
 
-The CI pipeline is defined in `.github/workflows/ci.yml` and uses `macos-latest` as the VM image. It restores NuGet packages, builds the solution, and runs tests. The pipeline installs .NET version 8.0.x to ensure compatibility with all targeted frameworks.
+The CI pipeline is now integrated into the CD pipeline and is defined in `.github/workflows/cd.yml`. It uses `ubuntu-latest` as the VM image. The pipeline handles manual triggers, pull requests, and releases. It restores NuGet packages, builds the solution, runs tests, and validates the NuGet package. The pipeline installs .NET version 8.0.x to ensure compatibility with all targeted frameworks.
 
 ## CD Pipeline
 
-The CD pipeline is defined in `.github/workflows/cd.yml` and uses `macos-latest` as the VM image. It restores NuGet packages, builds the solution, runs tests, and publishes the NuGet package. The pipeline installs .NET version 8.0.x to ensure compatibility with all targeted frameworks. Additionally, it includes a step to delete existing tags if they already exist before creating a new release to avoid the 'Validation Failed: already_exists' error. The step now handles the case where the tag deletion fails and ensures the deletion step successfully removes the existing tag before proceeding to create a new release.
-
-## Developer [![Twitter Follow](https://img.shields.io/twitter/follow/hootanht?style=social)](https://twitter.com/hootanht)
-
-| Name | Github | Email | Telegram |
-| ------ | ------ | ------ | ------ |
-| Hootan Hemmati | [@hootanht](https://github.com/hootanht) | [hootanhemmati@outlook.com](mailto:hootanhemmati@outlook.com) | https://t.me/hootanht |
+The CD pipeline is defined in `.github/workflows/cd.yml` and uses `ubuntu-latest` as the VM image. It includes steps for creating, validating, testing, and deploying the NuGet package. The pipeline handles manual triggers, pull requests, and releases. It uses environment variables for the NuGet directory and the latest versions of GitHub Actions for checkout, setup-dotnet, and upload-artifact. The pipeline installs .NET version 8.0.x to ensure compatibility with all targeted frameworks. Additionally, it includes a step to delete existing tags if they already exist before creating a new release to avoid the 'Validation Failed: already_exists' error. The step now handles the case where the tag deletion fails and ensures the deletion step successfully removes the existing tag before proceeding to create a new release.
