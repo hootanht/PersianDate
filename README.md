@@ -8,7 +8,7 @@ Persian Data Library is a library that can be convert **Gregorian** (Milady) yea
 
 | Target | Branch | Version |
 | ------ | ------ | ------ |
-| Github | master | v1.0.4 | 
+| Github | master | v1.0.5 | 
 
 
 ## Persian Date Public Version
