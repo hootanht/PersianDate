@@ -16,11 +16,11 @@
 		<NeutralLanguage>en-US</NeutralLanguage>
 		<PackageProjectUrl>https://github.com/hootanht/PrsianDate</PackageProjectUrl>
 		<Version>1.0.5</Version>
-		<RepositoryUrl>https://github.com/hootanht/PrsianDate</RepositoryUrl>
+		<RepositoryUrl>https://github.com/hootanht/PersianDate</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
 		<ImplicitUsings>disable</ImplicitUsings>
 		<Nullable>enable</Nullable>
-		<PackageSource>https://api.nuget.org/v3/index.json</PackageSource>
+		<PackageSource>https://nuget.pkg.github.com/hootanht/index.json</PackageSource>
 		<PublishProfile>nuget</PublishProfile>
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
 		<IncludeSymbols>true</IncludeSymbols>
