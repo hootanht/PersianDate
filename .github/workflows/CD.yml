@@ -126,14 +126,6 @@ jobs:
       - name: Fetch tags
         run: git fetch --tags
 
-      # Get the version tag from the latest tag
-      - name: Get version from tag
-        id: get_version
-        run: |
-          $VERSION = git describe --tags --abbrev=0 --always
-          echo "VERSION=$VERSION" >> $env:GITHUB_ENV
-
-
       # Fetch changes from the previous version
       - name: Fetch changes from previous version
         id: fetch_changes
