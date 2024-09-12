@@ -82,17 +82,17 @@ namespace PersianDateTests
         public void MinDateTimeTest()
         {
             DateTime? minDateTime = DateTime.MinValue;
-            Assert.AreEqual(1, persianDateShamsi.GetShamsiYear(minDateTime));
-            Assert.AreEqual("01", persianDateShamsi.GetShortShamsiYear(minDateTime));
-            Assert.AreEqual("1", persianDateShamsi.GetShamsiYearToString(minDateTime));
-            Assert.AreEqual(10, persianDateShamsi.GetShamsiMonth(minDateTime));
-            Assert.AreEqual("10", persianDateShamsi.GetShamsiMonthString(minDateTime.Value));
-            Assert.AreEqual(10, persianDateShamsi.GetShamsiMonthNumber(minDateTime));
-            Assert.AreEqual("دی", persianDateShamsi.GetShamsiMonthName(minDateTime));
-            Assert.AreEqual(13, persianDateShamsi.GetShamsiDay(minDateTime));
-            Assert.AreEqual("13", persianDateShamsi.GetShamsiDayString(minDateTime));
-            Assert.AreEqual("جمعه", persianDateShamsi.GetShamsiDayName(minDateTime));
-            Assert.AreEqual("ج", persianDateShamsi.GetShamsiDayShortName(minDateTime));
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => persianDateShamsi.GetShamsiYear(minDateTime));
+            Assert.IsNull(persianDateShamsi.GetShortShamsiYear(minDateTime));
+            Assert.IsNull(persianDateShamsi.GetShamsiYearToString(minDateTime));
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => persianDateShamsi.GetShamsiMonth(minDateTime));
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => persianDateShamsi.GetShamsiMonthString(minDateTime.Value));
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => persianDateShamsi.GetShamsiMonthNumber(minDateTime));
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => persianDateShamsi.GetShamsiMonthName(minDateTime));
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => persianDateShamsi.GetShamsiDay(minDateTime));
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => persianDateShamsi.GetShamsiDayString(minDateTime));
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => persianDateShamsi.GetShamsiDayName(minDateTime));
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => persianDateShamsi.GetShamsiDayShortName(minDateTime));
         }
 
         [TestMethod]

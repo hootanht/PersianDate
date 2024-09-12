@@ -13,7 +13,17 @@ namespace PersianDate
         /// <returns></returns>
         public int? GetShamsiYear(DateTime? dateTime)
         {
-            return dateTime.HasValue ? persianCalendar.GetYear(dateTime.Value) : null;
+            if (!dateTime.HasValue)
+                return null;
+
+            try
+            {
+                return persianCalendar.GetYear(dateTime.Value);
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                return null;
+            }
         }
         /// <summary>
         /// Get Short Shamsi Year From Miladi Year In String
@@ -40,7 +50,7 @@ namespace PersianDate
             }
             catch (ArgumentOutOfRangeException)
             {
-                return "1";
+                return null;
             }
         }
 
