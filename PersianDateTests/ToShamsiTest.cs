@@ -8,7 +8,7 @@ namespace PersianDateTests
     public class ToShamsiTest
     {
         //My Birthday
-        DateTime dateTime = new DateTime(1998, 1, 11);
+        DateTime? dateTime = new DateTime(1998, 1, 11);
         [TestMethod]
         public void ToShamsiDateTest()
         {
