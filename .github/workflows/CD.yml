@@ -21,7 +21,28 @@ defaults:
     shell: pwsh
 
 jobs:
+  build:
+      # Specify the type of runner to use. In this case, the latest macOS environment.
+      runs-on: macos-latest
+      
+      steps:
+      # Step 1: Check out the repository to the runner.
+      - uses: actions/checkout@v4
+      
+      # Step 2: Set up the .NET environment using the setup-dotnet action.
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+      
+      # Step 3: Restore the project's dependencies specified in the project file.
+      - name: Restore dependencies
+        run: dotnet restore
+      
+      # Step 4: Build the project in Release configuration.
+      - name: Build
+        run: dotnet build --configuration Release
+
   create_nuget:
+    needs: [ build ]
     runs-on: macos-latest
     steps:
     - uses: actions/checkout@v4
@@ -69,6 +90,7 @@ jobs:
 
   run_test:
     runs-on: macos-latest
+    needs: [ build ]
     steps:
     - uses: actions/checkout@v4
     - name: Setup .NET
