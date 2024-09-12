@@ -106,4 +106,44 @@ jobs:
         run: |
           foreach($file in (Get-ChildItem "${{ env.NuGetDirectory }}" -Recurse -Include *.nupkg)) {
               dotnet nuget push $file --api-key "${{ secrets.NUGET_APIKEY }}" --source https://api.nuget.org/v3/index.json --skip-duplicate
-          }
+
+  create_github_release:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+    runs-on: macos-latest
+    needs: [ deploy ]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+
+      - name: Get version from csproj
+        id: get_version
+        run: |
+          $version = (Get-Content -Path PersianDate/PersianDate.csproj) -match '<Version>(.*)</Version>' | Out-Null; $matches[1]
+          echo "::set-output name=VERSION::$version"
+
+      - name: Create GitHub Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: v${{ steps.get_version.outputs.VERSION }}
+          release_name: Release ${{ steps.get_version.outputs.VERSION }}
+          body: |
+            ## What's Changed
+            ${{ github.event.head_commit.message }}
+          draft: false
+          prerelease: false
+
+      - name: Upload Release Asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ${{ env.NuGetDirectory }}/*.nupkg
+          asset_name: PersianDateShamsi.${{ steps.get_version.outputs.VERSION }}.nupkg
+          asset_content_type: application/zip
