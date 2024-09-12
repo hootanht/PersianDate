@@ -87,7 +87,7 @@ namespace PersianDateTests
             Assert.AreEqual("1", persianDateShamsi.GetShamsiYearToString(minDateTime));
             Assert.AreEqual(1, persianDateShamsi.GetShamsiMonth(minDateTime));
             Assert.AreEqual("01", persianDateShamsi.GetShamsiMonthString(minDateTime));
-            Assert.AreEqual<int>(1, persianDateShamsi.GetShamsiMonthBunber(minDateTime));
+            Assert.AreEqual(1, persianDateShamsi.GetShamsiMonthBunber(minDateTime));
             Assert.AreEqual("فروردین", persianDateShamsi.GetShamsiMonthName(minDateTime));
             Assert.AreEqual(1, persianDateShamsi.GetShamsiDay(minDateTime));
             Assert.AreEqual("01", persianDateShamsi.GetShamsiDayString(minDateTime));
@@ -104,7 +104,7 @@ namespace PersianDateTests
             Assert.AreEqual("9378", persianDateShamsi.GetShamsiYearToString(maxDateTime));
             Assert.AreEqual(10, persianDateShamsi.GetShamsiMonth(maxDateTime));
             Assert.AreEqual("10", persianDateShamsi.GetShamsiMonthString(maxDateTime));
-            Assert.AreEqual<int>(10, persianDateShamsi.GetShamsiMonthBunber(maxDateTime));
+            Assert.AreEqual(10, persianDateShamsi.GetShamsiMonthBunber(maxDateTime));
             Assert.AreEqual("دی", persianDateShamsi.GetShamsiMonthName(maxDateTime));
             Assert.AreEqual(13, persianDateShamsi.GetShamsiDay(maxDateTime));
             Assert.AreEqual("13", persianDateShamsi.GetShamsiDayString(maxDateTime));

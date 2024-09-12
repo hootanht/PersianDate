@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Globalization;
 
 namespace PersianDate
@@ -56,9 +56,9 @@ namespace PersianDate
         /// </summary>
         /// <param name="dateTime">Enter The Jalali DateTime</param>
         /// <returns></returns>
-        public int? GetShamsiMonthBunber(DateTime? dateTime)
+        public int GetShamsiMonthBunber(DateTime? dateTime)
         {
-            return dateTime.HasValue ? persianCalendar.GetMonth(dateTime.Value) : null;
+            return dateTime.HasValue ? persianCalendar.GetMonth(dateTime.Value) : 0;
         }
         /// <summary>
         /// Get Shamsi Month Name From Miladi Month
