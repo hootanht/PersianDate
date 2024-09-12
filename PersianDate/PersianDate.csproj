@@ -41,7 +41,7 @@
 		</None>
 	</ItemGroup>
 
-	<ItemGroup>
+	<!--<ItemGroup>
 		<PackageReference Include="MinVer" Version="6.0.0">
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 			<IncludeAssets>all</IncludeAssets>
@@ -50,6 +50,6 @@
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 			<IncludeAssets>all</IncludeAssets>
 		</PackageReference>
-	</ItemGroup>
+	</ItemGroup>-->
 
 </Project>
