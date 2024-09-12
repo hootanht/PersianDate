@@ -46,3 +46,16 @@ steps:
     testResultsFiles: '**/TestResults/*.trx'
     mergeTestResults: true
     testRunTitle: 'Test Results'
+
+- task: PublishCodeCoverageResults@1
+  inputs:
+    codeCoverageTool: 'Cobertura'
+    summaryFileLocation: '$(System.DefaultWorkingDirectory)/**/coverage.cobertura.xml'
+    reportDirectory: '$(System.DefaultWorkingDirectory)/**/CodeCoverage'
+    failIfCoverageEmpty: true
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
