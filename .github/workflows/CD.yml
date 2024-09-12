@@ -122,7 +122,7 @@ jobs:
       - name: Get version from csproj
         id: get_version
         run: |
-          $version = (Get-Content -Path PersianDate/PersianDate.csproj) -match '<Version>(.*)</Version>' | Out-Null; $matches[1]
+          $version = dotnet msbuild -nologo -t:GetVersion -v:q -p:VersionPrefix=1.0.6 -p:VersionSuffix=ci
           echo "::set-output name=VERSION::$version"
 
       - name: Create GitHub Release
