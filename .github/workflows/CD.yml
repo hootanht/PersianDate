@@ -87,19 +87,6 @@ jobs:
       - name: Setup .NET Core
         uses: actions/setup-dotnet@v4
 
-      # Create a GitHub release before deploying
-      - name: Create GitHub Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: ${{ github.sha }}
-          release_name: Release ${{ github.sha }}
-          body: |
-            Release created for commit ${{ github.sha }}.
-          draft: false
-
       # Publish all NuGet packages to NuGet.org
       # Use --skip-duplicate to prevent errors if a package with the same version already exists.
       # If you retry a failed workflow, already published packages will be skipped without error.
