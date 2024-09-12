@@ -86,3 +86,26 @@ The CI pipeline is now integrated into the CD pipeline and is defined in `.githu
 ## CD Pipeline
 
 The CD pipeline is defined in `.github/workflows/CD.yml` and uses `macos-latest` as the VM image. It includes steps for creating, validating, testing, and deploying the NuGet package. The pipeline handles manual triggers, pull requests, and releases. It uses environment variables for the NuGet directory and the latest versions of GitHub Actions for checkout, setup-dotnet, and upload-artifact. The pipeline installs .NET version 8.0.x to ensure compatibility with all targeted frameworks. Additionally, it includes a step to delete existing tags if they already exist before creating a new release to avoid the 'Validation Failed: already_exists' error. The step now handles the case where the tag deletion fails and ensures the deletion step successfully removes the existing tag before proceeding to create a new release.
+
+## Requirements
+
+- .NET 8.0 SDK
+
+## Setup and Run
+
+1. **Install .NET 8.0 SDK**: Download and install the .NET 8.0 SDK from the official [.NET website](https://dotnet.microsoft.com/download/dotnet/8.0).
+
+2. **Restore Dependencies**: Open a terminal or command prompt in the project directory and run:
+   ```sh
+   dotnet restore
+   ```
+
+3. **Build the Project**: Build the project by running:
+   ```sh
+   dotnet build
+   ```
+
+4. **Run Tests**: Run the tests to ensure everything is working correctly:
+   ```sh
+   dotnet test
+   ```
