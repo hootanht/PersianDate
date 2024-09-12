@@ -119,10 +119,18 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
 
+      # Fetch all tags to make sure the latest tag is available
+      - name: Fetch tags
+        run: git fetch --tags
+
+      # Get the version tag from the latest tag
       - name: Get version from tag
         id: get_version
-        run: echo "VERSION=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
+        run: |
+          VERSION=$(git describe --tags --abbrev=0)
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
 
+      # Fetch changes from the previous version
       - name: Fetch changes from previous version
         id: fetch_changes
         run: |
@@ -131,26 +139,17 @@ jobs:
           $CHANGES = git log $PREV_TAG..HEAD --pretty=format:"%h - %s"
           echo "CHANGES=$CHANGES" | Out-File -FilePath $env:GITHUB_ENV -Append
 
+      # Create the GitHub release
       - name: Create GitHub Release
         id: create_release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ env.VERSION }}
+          tag_name: ${{ env.VERSION }}   # Ensure the tag_name is passed
           release_name: Release ${{ env.VERSION }}
           body: |
             ## Changes in this Release
             ${{ env.CHANGES }}
           draft: false
           prerelease: false
-
-      - name: Upload Release Asset
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ${{ env.NuGetDirectory }}/*.nupkg
-          asset_name: PersianDateShamsi.${{ env.VERSION }}.nupkg
-          asset_content_type: application/zip
