@@ -25,6 +25,9 @@
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
 		<IncludeSymbols>true</IncludeSymbols>
 		<ReadmeFile>README.md</ReadmeFile>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<NoWarn>$(NoWarn);CS1591</NoWarn>
+		<EnablePackageValidation>true</EnablePackageValidation>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -36,6 +39,10 @@
 
 	<ItemGroup>
 	  <PackageReference Include="MinVer" Version="6.0.0">
+	    <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+	    <PrivateAssets>all</PrivateAssets>
+	  </PackageReference>
+	  <PackageReference Include="DotNet.ReproducibleBuilds" Version="1.1.1">
 	    <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 	    <PrivateAssets>all</PrivateAssets>
 	  </PackageReference>
