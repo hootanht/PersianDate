@@ -119,11 +119,17 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
 
-      - name: Get version from csproj
+      - name: Get version from tag
         id: get_version
+        run: echo "VERSION=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
+
+      - name: Fetch changes from previous version
+        id: fetch_changes
         run: |
-          $version = dotnet msbuild -nologo -t:GetVersion -v:q -p:VersionPrefix=1.0.6 -p:VersionSuffix=ci
-          echo "VERSION=$version" >> $GITHUB_ENV
+          PREV_TAG=$(git describe --tags --abbrev=0 HEAD^)
+          echo "PREV_TAG=$PREV_TAG" >> $GITHUB_ENV
+          CHANGES=$(git log $PREV_TAG..HEAD --pretty=format:"%h - %s")
+          echo "CHANGES=$CHANGES" >> $GITHUB_ENV
 
       - name: Create GitHub Release
         id: create_release
@@ -131,11 +137,11 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: v${{ env.VERSION }}
+          tag_name: ${{ env.VERSION }}
           release_name: Release ${{ env.VERSION }}
           body: |
-            ## What's Changed
-            ${{ github.event.head_commit.message }}
+            ## Changes in this Release
+            ${{ env.CHANGES }}
           draft: false
           prerelease: false
 
