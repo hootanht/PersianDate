@@ -109,3 +109,4 @@ The CD pipeline is defined in `.github/workflows/CD.yml` and uses `macos-latest`
    ```sh
    dotnet test
    ```
+
