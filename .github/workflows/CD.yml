@@ -126,10 +126,10 @@ jobs:
       - name: Fetch changes from previous version
         id: fetch_changes
         run: |
-          $PREV_TAG = $(git describe --tags --abbrev=0 HEAD^)
-          echo "PREV_TAG=$PREV_TAG" >> $GITHUB_ENV
-          CHANGES=$(git log $PREV_TAG..HEAD --pretty=format:"%h - %s")
-          echo "CHANGES=$CHANGES" >> $GITHUB_ENV
+          $PREV_TAG = git describe --tags --abbrev=0 HEAD^
+          echo "PREV_TAG=$PREV_TAG" | Out-File -FilePath $env:GITHUB_ENV -Append
+          $CHANGES = git log $PREV_TAG..HEAD --pretty=format:"%h - %s"
+          echo "CHANGES=$CHANGES" | Out-File -FilePath $env:GITHUB_ENV -Append
 
       - name: Create GitHub Release
         id: create_release
