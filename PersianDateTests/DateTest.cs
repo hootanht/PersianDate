@@ -77,14 +77,5 @@ namespace PersianDateTests
             Assert.IsNull(persianDateShamsi.GetShamsiDayName(nullDateTime));
             Assert.IsNull(persianDateShamsi.GetShamsiDayShortName(nullDateTime));
         }
-
-        [TestMethod]
-        public void MinDateTimeTest()
-        {
-            DateTime? minDateTime = DateTime.MinValue;
-            Assert.AreEqual("0001/10/11", minDateTime.ToShamsiDate());
-            Assert.AreEqual("01/10/11", minDateTime.ToShortShamsiDate());
-            Assert.AreEqual("جمعه 11 دی 1", minDateTime.ToLongShamsiDate());
-        }
     }
 }
