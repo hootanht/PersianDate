@@ -21,9 +21,6 @@ Persian Data Library is a library that can be convert **Gregorian** (Milady) yea
 
 | Platform | Supported Version |
 | ------ | ------ |
-| .NET | 5.0 |
-| .NET | 6.0 |
-| .NET | 7.0 |
 | .NET | 8.0 |
 
 ## Code Example
@@ -84,11 +81,11 @@ Version 1.0.1
 
 ## CI Pipeline
 
-The CI pipeline is defined in `.github/workflows/ci.yml` and uses `macos-latest` as the VM image. It restores NuGet packages, builds the solution, and runs tests. The pipeline installs .NET versions 5.0.x, 6.0.x, 7.0.x, and 8.0.x to ensure compatibility with all targeted frameworks.
+The CI pipeline is defined in `.github/workflows/ci.yml` and uses `macos-latest` as the VM image. It restores NuGet packages, builds the solution, and runs tests. The pipeline installs .NET version 8.0.x to ensure compatibility with all targeted frameworks.
 
 ## CD Pipeline
 
-The CD pipeline is defined in `.github/workflows/cd.yml` and uses `macos-latest` as the VM image. It restores NuGet packages, builds the solution, runs tests, and publishes the NuGet package. The pipeline installs .NET versions 5.0.x, 6.0.x, 7.0.x, and 8.0.x to ensure compatibility with all targeted frameworks.
+The CD pipeline is defined in `.github/workflows/cd.yml` and uses `macos-latest` as the VM image. It restores NuGet packages, builds the solution, runs tests, and publishes the NuGet package. The pipeline installs .NET version 8.0.x to ensure compatibility with all targeted frameworks.
 
 ## Developer [![Twitter Follow](https://img.shields.io/twitter/follow/hootanht?style=social)](https://twitter.com/hootanht)
 
