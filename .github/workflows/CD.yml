@@ -122,10 +122,6 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
 
-      # Fetch all tags to make sure the latest tag is available
-      - name: Fetch tags
-        run: git fetch --tags
-
       # Fetch changes from the previous version
       - name: Fetch changes from previous version
         id: fetch_changes
@@ -142,8 +138,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ env.VERSION }}   # Ensure the tag_name is passed
-          release_name: Release ${{ env.VERSION }}
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
           body: |
             ## Changes in this Release
             ${{ env.CHANGES }}
