@@ -66,9 +66,9 @@ namespace PersianDate
         /// </summary>
         /// <param name="dateTime">Enter The Jalali DateTime</param>
         /// <returns></returns>
-        public int GetShamsiMonthBunber(DateTime? dateTime)
+        public int? GetShamsiMonthNumber(DateTime? dateTime)
         {
-            return dateTime.HasValue ? persianCalendar.GetMonth(dateTime.Value) : 0;
+            return dateTime.HasValue ? persianCalendar.GetMonth(dateTime.Value) : null;
         }
         /// <summary>
         /// Get Shamsi Month Name From Miladi Month
