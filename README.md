@@ -14,14 +14,16 @@ Persian Data Library is a library that can be convert **Gregorian** (Milady) yea
 ## Persian Date Public Version
 | Target | Branch | Version | Download link | Total downloads |
 | ------ | ------ | ------ | ------ | ------ |
-| Nuget | master | v1.0.4 | [![NuGet](https://img.shields.io/nuget/v/PersianDateShamsi.svg)](https://www.nuget.org/packages/PersianDateShamsi) | [![NuGet downloads](https://img.shields.io/nuget/dt/PersianDateShamsi.svg)](https://www.nuget.org/packages/PersianDateShamsi) |
-| Release | master | v1.0.4 | [![Build Status](https://dev.azure.com/hootanht/PersianDate/_apis/build/status/PersianDate?branchName=master)](https://hootanht.visualstudio.com/PersianDate) | |
+| Nuget | master | v1.0.5 | [![NuGet](https://img.shields.io/nuget/v/PersianDateShamsi.svg)](https://www.nuget.org/packages/PersianDateShamsi) | [![NuGet downloads](https://img.shields.io/nuget/dt/PersianDateShamsi.svg)](https://www.nuget.org/packages/PersianDateShamsi) |
+| Release | master | v1.0.5 | [![Build Status](https://github.com/hootanht/PersianDate/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/hootanht/PersianDate/actions) | |
 
 ## Cross Platform
 
 | Platform | Supported Version |
 | ------ | ------ |
-| .NET | 5.0 Or Higher|
+| .NET | 5.0 |
+| .NET | 6.0 |
+| .NET | 7.0 |
 | .NET | 8.0 |
 
 ## Code Example
@@ -60,6 +62,10 @@ Extension Method For DateTime
 ```
 
 ## Version changes
+Version 1.0.5
+
+-Add support for .Net 8.0
+
 Version 1.0.4
 
 -Add support for .Net 5.0 and 6.0
@@ -76,13 +82,9 @@ Version 1.0.1
 
 -Change .Net Standard 2.1 To 2.0 To Support More Platforms
 
-Version 1.0.5
-
--Add support for .Net 8.0
-
 ## CI Pipeline
 
-The CI pipeline is defined in `azure-pipelines.yml` and uses `windows-latest` as the VM image. It restores NuGet packages, builds the solution, and runs tests.
+The CI pipeline is defined in `.github/workflows/ci-cd.yml` and uses `windows-latest` as the VM image. It restores NuGet packages, builds the solution, runs tests, and publishes the NuGet package. The pipeline installs .NET versions 5.0.x, 6.0.x, 7.0.x, and 8.0.x to ensure compatibility with all targeted frameworks.
 ## Developer [![Twitter Follow](https://img.shields.io/twitter/follow/hootanht?style=social)](https://twitter.com/hootanht)
 
 | Name | Github | Email | Telegram |
