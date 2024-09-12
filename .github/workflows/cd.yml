@@ -36,6 +36,14 @@ jobs:
       id: get_version
       run: echo "::set-output name=version::$(dotnet run --project ./PrsianDate/PrsianDate.csproj --configuration Release --no-build --no-restore)"
 
+    - name: Delete existing tag if it exists
+      id: delete_tag
+      run: |
+        if git rev-parse "v${{ steps.get_version.outputs.version }}" >/dev/null 2>&1; then
+          git tag -d "v${{ steps.get_version.outputs.version }}"
+          git push --delete origin "v${{ steps.get_version.outputs.version }}"
+        fi
+
     - name: Create GitHub release
       id: create_release
       uses: actions/create-release@v1
