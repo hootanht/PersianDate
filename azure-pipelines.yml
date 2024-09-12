@@ -33,4 +33,14 @@ steps:
   inputs:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
-    targetFramework: '$(targetFramework)'
+    testAssemblyVer2: |
+      **\$(buildConfiguration)\**\*test*.dll
+      **\$(buildConfiguration)\**\*Test*.dll
+      !**\obj\**
+    searchFolder: '$(System.DefaultWorkingDirectory)'
+
+- task: PublishTestResults@2
+  inputs:
+    testResultsFiles: '**/TestResults/*.trx'
+    mergeTestResults: true
+    testRunTitle: 'Test Results'
