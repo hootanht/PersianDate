@@ -1,70 +1,106 @@
-name: CD
+# yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
 
+name: publish
 on:
+  workflow_dispatch: # Allow running the workflow manually from the GitHub UI
   push:
     branches:
-      - master
+      - 'main'       # Run the workflow when pushing to the main branch
+  pull_request:
+    branches:
+      - '*'          # Run the workflow for all pull requests
+  release:
+    types:
+      - published    # Run the workflow when a new GitHub release is published
+
+env:
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
+  DOTNET_NOLOGO: true
+  NuGetDirectory: ${{ github.workspace}}/nuget
+
+defaults:
+  run:
+    shell: pwsh
 
 jobs:
-  build:
-    runs-on: macos-latest
-
+  create_nuget:
+    runs-on: ubuntu-latest
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+    - uses: actions/checkout@v3
+      with:
+        fetch-depth: 0 # Get all history to allow automatic versioning using MinVer
 
+    # Install the .NET SDK indicated in the global.json file
     - name: Setup .NET
-      uses: actions/setup-dotnet@v1
+      uses: actions/setup-dotnet@v4
+
+    # Create the NuGet package in the folder from the environment variable NuGetDirectory
+    - run: dotnet pack --configuration Release --output ${{ env.NuGetDirectory }}
+
+    # Publish the NuGet package as an artifact, so they can be used in the following jobs
+    - uses: actions/upload-artifact@v3
       with:
-        dotnet-version: '8.0.x'
+        name: nuget
+        if-no-files-found: error
+        retention-days: 7
+        path: ${{ env.NuGetDirectory }}/*.nupkg
 
-    - name: Restore dependencies
-      run: dotnet restore
+  validate_nuget:
+    runs-on: ubuntu-latest
+    needs: [ create_nuget ]
+    steps:
+      # Install the .NET SDK indicated in the global.json file
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
 
-    - name: Build solution
-      run: dotnet build --configuration Release --no-restore
+      # Download the NuGet package created in the previous job
+      - uses: actions/download-artifact@v3
+        with:
+          name: nuget
+          path: ${{ env.NuGetDirectory }}
 
+      - name: Install nuget validator
+        run: dotnet tool update Meziantou.Framework.NuGetPackageValidation.Tool --global
+
+      # Validate metadata and content of the NuGet package
+      # https://www.nuget.org/packages/Meziantou.Framework.NuGetPackageValidation.Tool#readme-body-tab
+      # If some rules are not applicable, you can disable them
+      # using the --excluded-rules or --excluded-rule-ids option
+      - name: Validate package
+        run: meziantou.validate-nuget-package (Get-ChildItem "${{ env.NuGetDirectory }}/*.nupkg")
+
+  run_test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
     - name: Run tests
-      run: dotnet test --no-restore --verbosity normal
+      run: dotnet test --configuration Release
 
-    - name: Set up Git
-      run: |
-        git config --global user.name 'github-actions'
-        git config --global user.email 'github-actions@github.com'
+  deploy:
+    # Publish only when creating a GitHub Release
+    # https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository
+    # You can update this logic if you want to manage releases differently
+    if: github.event_name == 'release'
+    runs-on: ubuntu-latest
+    needs: [ validate_nuget, run_test ]
+    steps:
+      # Download the NuGet package created in the previous job
+      - uses: actions/download-artifact@v3
+        with:
+          name: nuget
+          path: ${{ env.NuGetDirectory }}
 
-    - name: Determine version number
-      id: get_version
-      run: echo "::set-output name=version::$(dotnet run --project ./PrsianDate/PrsianDate.csproj --configuration Release --no-build --no-restore)"
+      # Install the .NET SDK indicated in the global.json file
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v4
 
-    - name: Delete existing tag if it exists
-      id: delete_tag
-      run: |
-        if git rev-parse "v${{ steps.get_version.outputs.version }}" >/dev/null 2>&1; then
-          git tag -d "v${{ steps.get_version.outputs.version }}"
-          git push --delete origin "v${{ steps.get_version.outputs.version }}"
-        fi
-      continue-on-error: true
-
-    - name: Check if tag deletion was successful
-      id: check_tag_deletion
-      run: |
-        if git rev-parse "v${{ steps.get_version.outputs.version }}" >/dev/null 2>&1; then
-          echo "Tag deletion failed"
-          exit 1
-        else
-          echo "Tag deletion successful"
-        fi
-
-    - name: Create GitHub release
-      id: create_release
-      uses: actions/create-release@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        tag_name: v${{ steps.get_version.outputs.version }}
-        release_name: Release ${{ steps.get_version.outputs.version }}
-        draft: false
-        prerelease: false
-
-    - name: Publish NuGet package
-      run: dotnet nuget push ./PrsianDate/bin/Release/*.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json
+      # Publish all NuGet packages to NuGet.org
+      # Use --skip-duplicate to prevent errors if a package with the same version already exists.
+      # If you retry a failed workflow, already published packages will be skipped without error.
+      - name: Publish NuGet package
+        run: |
+          foreach($file in (Get-ChildItem "${{ env.NuGetDirectory }}" -Recurse -Include *.nupkg)) {
+              dotnet nuget push $file --api-key "${{ secrets.NUGET_APIKEY }}" --source https://api.nuget.org/v3/index.json --skip-duplicate
+          }
