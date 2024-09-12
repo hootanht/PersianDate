@@ -31,7 +31,17 @@ namespace PersianDate
         /// <returns></returns>
         public string? GetShamsiYearToString(DateTime? dateTime)
         {
-            return dateTime.HasValue ? persianCalendar.GetYear(dateTime.Value).ToString() : null;
+            if (!dateTime.HasValue)
+                return null;
+
+            try
+            {
+                return persianCalendar.GetYear(dateTime.Value).ToString();
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                return "1";
+            }
         }
 
         /// <summary>
