@@ -22,6 +22,9 @@
 		<Nullable>enable</Nullable>
 		<PackageSource>https://api.nuget.org/v3/index.json</PackageSource>
 		<PublishProfile>nuget</PublishProfile>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<IncludeSymbols>true</IncludeSymbols>
+		<ReadmeFile>README.md</ReadmeFile>
 	</PropertyGroup>
 
 	<ItemGroup>
