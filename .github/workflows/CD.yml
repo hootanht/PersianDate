@@ -6,6 +6,7 @@ on:
   push:
     branches:
       - 'master'       # Run the workflow when pushing to the master branch
+  pull_request:       # Run the workflow on pull requests
 
 env:
   DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
