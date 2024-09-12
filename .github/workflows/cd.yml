@@ -43,6 +43,17 @@ jobs:
           git tag -d "v${{ steps.get_version.outputs.version }}"
           git push --delete origin "v${{ steps.get_version.outputs.version }}"
         fi
+      continue-on-error: true
+
+    - name: Check if tag deletion was successful
+      id: check_tag_deletion
+      run: |
+        if git rev-parse "v${{ steps.get_version.outputs.version }}" >/dev/null 2>&1; then
+          echo "Tag deletion failed"
+          exit 1
+        else
+          echo "Tag deletion successful"
+        fi
 
     - name: Create GitHub release
       id: create_release
