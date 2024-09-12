@@ -85,7 +85,7 @@ The CI pipeline is defined in `.github/workflows/ci.yml` and uses `macos-latest`
 
 ## CD Pipeline
 
-The CD pipeline is defined in `.github/workflows/cd.yml` and uses `macos-latest` as the VM image. It restores NuGet packages, builds the solution, runs tests, and publishes the NuGet package. The pipeline installs .NET version 8.0.x to ensure compatibility with all targeted frameworks. Additionally, it includes a step to delete existing tags if they already exist before creating a new release to avoid the 'Validation Failed: already_exists' error.
+The CD pipeline is defined in `.github/workflows/cd.yml` and uses `macos-latest` as the VM image. It restores NuGet packages, builds the solution, runs tests, and publishes the NuGet package. The pipeline installs .NET version 8.0.x to ensure compatibility with all targeted frameworks. Additionally, it includes a step to delete existing tags if they already exist before creating a new release to avoid the 'Validation Failed: already_exists' error. The step now handles the case where the tag deletion fails and ensures the deletion step successfully removes the existing tag before proceeding to create a new release.
 
 ## Developer [![Twitter Follow](https://img.shields.io/twitter/follow/hootanht?style=social)](https://twitter.com/hootanht)
 
