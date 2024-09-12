@@ -8,7 +8,7 @@ namespace PersianDateTests
     public class ToShamsiTest
     {
         //My Birthday
-        DateTime dateTime = new DateTime(1998, 1, 11);
+        DateTime? dateTime = new DateTime(1998, 1, 11);
         [TestMethod]
         public void ToShamsiDateTest()
         {
@@ -38,7 +38,7 @@ namespace PersianDateTests
         [TestMethod]
         public void MinDateTimeTest()
         {
-            DateTime minDateTime = DateTime.MinValue;
+            DateTime? minDateTime = DateTime.MinValue;
             Assert.AreEqual("1/1/1", minDateTime.ToShamsiDate());
             Assert.AreEqual("01/01/01", minDateTime.ToShortShamsiDate());
             Assert.AreEqual("شنبه 1 فروردین 1", minDateTime.ToLongShamsiDate());
@@ -47,7 +47,7 @@ namespace PersianDateTests
         [TestMethod]
         public void MaxDateTimeTest()
         {
-            DateTime maxDateTime = DateTime.MaxValue;
+            DateTime? maxDateTime = DateTime.MaxValue;
             Assert.AreEqual("9378/10/13", maxDateTime.ToShamsiDate());
             Assert.AreEqual("78/10/13", maxDateTime.ToShortShamsiDate());
             Assert.AreEqual("جمعه 13 دی 9378", maxDateTime.ToLongShamsiDate());
