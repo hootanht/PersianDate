@@ -8,14 +8,14 @@ Persian Data Library is a library that can be convert **Gregorian** (Milady) yea
 
 | Target | Branch | Version |
 | ------ | ------ | ------ |
-| Github | master | v1.0.5 | 
+| Github | master | v1.0.7 | 
 
 
 ## Persian Date Public Version
 | Target | Branch | Version | Download link | Total downloads | CI Build Status | CD Build Status |
 | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
-| Nuget | master | v1.0.6 | [![NuGet](https://img.shields.io/nuget/v/PersianDateShamsi.svg)](https://www.nuget.org/packages/PersianDateShamsi) | [![NuGet downloads](https://img.shields.io/nuget/dt/PersianDateShamsi.svg)](https://www.nuget.org/packages/PersianDateShamsi) | [![Build Status](https://github.com/hootanht/PersianDate/actions/workflows/CI.yml/badge.svg?branch=master)](https://github.com/hootanht/PersianDate/actions) | [![Build Status](https://github.com/hootanht/PersianDate/actions/workflows/CD.yml/badge.svg?branch=master)](https://github.com/hootanht/PersianDate/actions) |
-| Release | master | v1.0.5 | [![Build Status](https://github.com/hootanht/PersianDate/actions/workflows/CI.yml/badge.svg?branch=master)](https://github.com/hootanht/PersianDate/actions) | | [![Build Status](https://github.com/hootanht/PersianDate/actions/workflows/CI.yml/badge.svg?branch=master)](https://github.com/hootanht/PersianDate/actions) | [![Build Status](https://github.com/hootanht/PersianDate/actions/workflows/CD.yml/badge.svg?branch=master)](https://github.com/hootanht/PersianDate/actions) |
+| Nuget | master | v1.0.7 | [![NuGet](https://img.shields.io/nuget/v/PersianDateShamsi.svg)](https://www.nuget.org/packages/PersianDateShamsi) | [![NuGet downloads](https://img.shields.io/nuget/dt/PersianDateShamsi.svg)](https://www.nuget.org/packages/PersianDateShamsi) | [![Build Status](https://github.com/hootanht/PersianDate/actions/workflows/CI.yml/badge.svg?branch=master)](https://github.com/hootanht/PersianDate/actions) | [![Build Status](https://github.com/hootanht/PersianDate/actions/workflows/CD.yml/badge.svg?branch=master)](https://github.com/hootanht/PersianDate/actions) |
+| Release | master | v1.0.7 | [![Build Status](https://github.com/hootanht/PersianDate/actions/workflows/CI.yml/badge.svg?branch=master)](https://github.com/hootanht/PersianDate/actions) | | [![Build Status](https://github.com/hootanht/PersianDate/actions/workflows/CI.yml/badge.svg?branch=master)](https://github.com/hootanht/PersianDate/actions) | [![Build Status](https://github.com/hootanht/PersianDate/actions/workflows/CD.yml/badge.svg?branch=master)](https://github.com/hootanht/PersianDate/actions) |
 
 ## Cross Platform
 
@@ -59,7 +59,7 @@ Extension Method For DateTime
 ```
 
 ## Version changes
-Version 1.0.6
+Version 1.0.7
 
 -Add support for .Net 8.0
 
