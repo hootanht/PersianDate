@@ -38,6 +38,8 @@ steps:
       **\$(buildConfiguration)\**\*Test*.dll
       !**\obj\**
     searchFolder: '$(System.DefaultWorkingDirectory)'
+    runSettingsFile: '$(System.DefaultWorkingDirectory)/test.runsettings'
+    codeCoverageEnabled: true
 
 - task: PublishTestResults@2
   inputs:

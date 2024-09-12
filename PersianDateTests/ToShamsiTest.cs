@@ -39,7 +39,7 @@ namespace PersianDateTests
         public void MinDateTimeTest()
         {
             DateTime? minDateTime = DateTime.MinValue;
-            Assert.AreEqual("1/1/1", minDateTime.ToShamsiDate());
+            Assert.AreEqual("0001/01/01", minDateTime.ToShamsiDate());
             Assert.AreEqual("01/01/01", minDateTime.ToShortShamsiDate());
             Assert.AreEqual("شنبه 1 فروردین 1", minDateTime.ToLongShamsiDate());
         }
