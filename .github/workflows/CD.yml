@@ -21,7 +21,7 @@ jobs:
   create_nuget:
     runs-on: macos-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
       with:
         fetch-depth: 0 # Get all history to allow automatic versioning using MinVer
 
@@ -67,7 +67,7 @@ jobs:
   run_test:
     runs-on: macos-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
     - name: Run tests
@@ -114,7 +114,7 @@ jobs:
     needs: [ deploy ]
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
