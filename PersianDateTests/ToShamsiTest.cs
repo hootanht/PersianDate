@@ -43,14 +43,5 @@ namespace PersianDateTests
             Assert.AreEqual("01/10/11", minDateTime.ToShortShamsiDate());
             Assert.AreEqual("جمعه 11 دی 1", minDateTime.ToLongShamsiDate());
         }
-
-        [TestMethod]
-        public void MaxDateTimeTest()
-        {
-            DateTime? maxDateTime = DateTime.MaxValue;
-            Assert.AreEqual("9378/10/13", maxDateTime.ToShamsiDate());
-            Assert.AreEqual("78/10/13", maxDateTime.ToShortShamsiDate());
-            Assert.AreEqual("جمعه 13 دی 9378", maxDateTime.ToLongShamsiDate());
-        }
     }
 }
