@@ -14,8 +14,8 @@ Persian Data Library is a library that can be convert **Gregorian** (Milady) yea
 ## Persian Date Public Version
 | Target | Branch | Version | Download link | Total downloads | CI Build Status | CD Build Status |
 | ------ | ------ | ------ | ------ | ------ | ------ | ------ |
-| Nuget | master | v1.0.5 | [![NuGet](https://img.shields.io/nuget/v/PersianDateShamsi.svg)](https://www.nuget.org/packages/PersianDateShamsi) | [![NuGet downloads](https://img.shields.io/nuget/dt/PersianDateShamsi.svg)](https://www.nuget.org/packages/PersianDateShamsi) | [![Build Status](https://github.com/hootanht/PersianDate/actions/workflows/ci.yml/badge.svg)](https://github.com/hootanht/PersianDate/actions) | [![Build Status](https://github.com/hootanht/PersianDate/actions/workflows/CD.yml/badge.svg)](https://github.com/hootanht/PersianDate/actions) |
-| Release | master | v1.0.5 | [![Build Status](https://github.com/hootanht/PersianDate/actions/workflows/ci.yml/badge.svg)](https://github.com/hootanht/PersianDate/actions) | | [![Build Status](https://github.com/hootanht/PersianDate/actions/workflows/ci.yml/badge.svg)](https://github.com/hootanht/PersianDate/actions) | [![Build Status](https://github.com/hootanht/PersianDate/actions/workflows/CD.yml/badge.svg)](https://github.com/hootanht/PersianDate/actions) |
+| Nuget | master | v1.0.5 | [![NuGet](https://img.shields.io/nuget/v/PersianDateShamsi.svg)](https://www.nuget.org/packages/PersianDateShamsi) | [![NuGet downloads](https://img.shields.io/nuget/dt/PersianDateShamsi.svg)](https://www.nuget.org/packages/PersianDateShamsi) | [![Build Status](https://github.com/hootanht/PersianDate/actions/workflows/CI.yml/badge.svg)](https://github.com/hootanht/PersianDate/actions) | [![Build Status](https://github.com/hootanht/PersianDate/actions/workflows/CD.yml/badge.svg)](https://github.com/hootanht/PersianDate/actions) |
+| Release | master | v1.0.5 | [![Build Status](https://github.com/hootanht/PersianDate/actions/workflows/CI.yml/badge.svg)](https://github.com/hootanht/PersianDate/actions) | | [![Build Status](https://github.com/hootanht/PersianDate/actions/workflows/CI.yml/badge.svg)](https://github.com/hootanht/PersianDate/actions) | [![Build Status](https://github.com/hootanht/PersianDate/actions/workflows/CD.yml/badge.svg)](https://github.com/hootanht/PersianDate/actions) |
 
 ## Cross Platform
 
@@ -81,7 +81,7 @@ Version 1.0.1
 
 ## CI Pipeline
 
-The CI pipeline is now integrated into the CD pipeline and is defined in `.github/workflows/CD.yml`. It uses `macos-latest` as the VM image. The pipeline handles manual triggers, pull requests, and releases. It restores NuGet packages, builds the solution, runs tests, and validates the NuGet package. The pipeline installs .NET version 8.0.x to ensure compatibility with all targeted frameworks.
+The CI pipeline is now integrated into the CD pipeline and is defined in `.github/workflows/CI.yml`. It uses `macos-latest` as the VM image. The pipeline handles manual triggers, pull requests, and releases. It restores NuGet packages, builds the solution, runs tests, and validates the NuGet package. The pipeline installs .NET version 8.0.x to ensure compatibility with all targeted frameworks.
 
 ## CD Pipeline
 
