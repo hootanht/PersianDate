@@ -5,9 +5,10 @@ on:
   workflow_dispatch: # Allow running the workflow manually from the GitHub UI
   push:
     branches:
-      - 'master'       # Run the workflow when pushing to the master branch
-    tags:             # Run the workflow when pushing to tags
-      - '*'
+      - 'master'
+    tags: 
+      - 'v*.*.*'       # Run the workflow on tags that match the pattern v*.*.*
+
   pull_request:       # Run the workflow on pull requests
 
 env:
