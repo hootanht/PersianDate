@@ -56,4 +56,4 @@ jobs:
         fi
 
     - name: Publish NuGet package
-      run: dotnet nuget push ./PrsianDate/bin/Release/*.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json
+      run: dotnet nuget push ./PrsianDate/bin/Release/*.nupkg -k ${{ secrets.NUGET_APIKEY }} -s https://api.nuget.org/v3/index.json
