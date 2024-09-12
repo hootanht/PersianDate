@@ -14,7 +14,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\PrsianDate\PersianDate.csproj" />
+		<ProjectReference Include="..\PersianDate\PersianDate.csproj" />
 	</ItemGroup>
 
 </Project>
