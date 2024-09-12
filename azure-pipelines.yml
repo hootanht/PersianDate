@@ -39,20 +39,13 @@ steps:
       !**\obj\**
     searchFolder: '$(System.DefaultWorkingDirectory)'
     runSettingsFile: ''
-    codeCoverageEnabled: true
+    codeCoverageEnabled: false
 
 - task: PublishTestResults@2
   inputs:
     testResultsFiles: '**/TestResults/*.trx'
     mergeTestResults: true
     testRunTitle: 'Test Results'
-
-- task: PublishCodeCoverageResults@2
-  inputs:
-    codeCoverageTool: 'Cobertura'
-    summaryFileLocation: '$(System.DefaultWorkingDirectory)/**/coverage.cobertura.xml'
-    reportDirectory: '$(System.DefaultWorkingDirectory)/**/CodeCoverage'
-    failIfCoverageEmpty: true
 
 - task: PublishBuildArtifacts@1
   inputs:
