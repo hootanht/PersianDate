@@ -14,8 +14,8 @@ Persian Data Library is a library that can be convert **Gregorian** (Milady) yea
 ## Persian Date Public Version
 | Target | Branch | Version | Download link | Total downloads |
 | ------ | ------ | ------ | ------ | ------ |
-| Nuget | master | v1.0.4 | [![NuGet](https://img.shields.io/nuget/v/PersianDateShamsi.svg)](https://www.nuget.org/packages/PersianDateShamsi) | [![NuGet downloads](https://img.shields.io/nuget/dt/PersianDateShamsi.svg)](https://www.nuget.org/packages/PersianDateShamsi) |
-| Release | master | v1.0.4 | [![Build Status](https://dev.azure.com/hootanht/PersianDate/_apis/build/status/PersianDate?branchName=master)](https://hootanht.visualstudio.com/PersianDate) | |
+| Nuget | master | v1.0.5 | [![NuGet](https://img.shields.io/nuget/v/PersianDateShamsi.svg)](https://www.nuget.org/packages/PersianDateShamsi) | [![NuGet downloads](https://img.shields.io/nuget/dt/PersianDateShamsi.svg)](https://www.nuget.org/packages/PersianDateShamsi) |
+| Release | master | v1.0.5 | [![Build Status](https://dev.azure.com/hootanht/PersianDate/_apis/build/status/PersianDate?branchName=master)](https://hootanht.visualstudio.com/PersianDate) | |
 
 ## Cross Platform
 
@@ -60,6 +60,10 @@ Extension Method For DateTime
 ```
 
 ## Version changes
+Version 1.0.5
+
+-Add support for .Net 8.0
+
 Version 1.0.4
 
 -Add support for .Net 5.0 and 6.0
@@ -75,10 +79,6 @@ Version 1.0.2
 Version 1.0.1
 
 -Change .Net Standard 2.1 To 2.0 To Support More Platforms
-
-Version 1.0.5
-
--Add support for .Net 8.0
 
 ## CI Pipeline
 
