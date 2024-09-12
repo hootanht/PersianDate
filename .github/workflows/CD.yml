@@ -1,17 +1,11 @@
 # yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
 
-name: publish
+name: CD
 on:
   workflow_dispatch: # Allow running the workflow manually from the GitHub UI
   push:
     branches:
-      - 'main'       # Run the workflow when pushing to the main branch
-  pull_request:
-    branches:
-      - '*'          # Run the workflow for all pull requests
-  release:
-    types:
-      - published    # Run the workflow when a new GitHub release is published
+      - 'master'       # Run the workflow when pushing to the master branch
 
 env:
   DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
@@ -24,7 +18,7 @@ defaults:
 
 jobs:
   create_nuget:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     steps:
     - uses: actions/checkout@v3
       with:
@@ -46,7 +40,7 @@ jobs:
         path: ${{ env.NuGetDirectory }}/*.nupkg
 
   validate_nuget:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     needs: [ create_nuget ]
     steps:
       # Install the .NET SDK indicated in the global.json file
@@ -70,7 +64,7 @@ jobs:
         run: meziantou.validate-nuget-package (Get-ChildItem "${{ env.NuGetDirectory }}/*.nupkg")
 
   run_test:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     steps:
     - uses: actions/checkout@v3
     - name: Setup .NET
@@ -79,11 +73,8 @@ jobs:
       run: dotnet test --configuration Release
 
   deploy:
-    # Publish only when creating a GitHub Release
-    # https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository
-    # You can update this logic if you want to manage releases differently
-    if: github.event_name == 'release'
-    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+    runs-on: macos-latest
     needs: [ validate_nuget, run_test ]
     steps:
       # Download the NuGet package created in the previous job
