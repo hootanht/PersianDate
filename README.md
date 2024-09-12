@@ -22,6 +22,7 @@ Persian Data Library is a library that can be convert **Gregorian** (Milady) yea
 | Platform | Supported Version |
 | ------ | ------ |
 | .NET | 5.0 Or Higher|
+| .NET | 8.0 |
 
 ## Code Example
 
@@ -74,6 +75,14 @@ Version 1.0.2
 Version 1.0.1
 
 -Change .Net Standard 2.1 To 2.0 To Support More Platforms
+
+Version 1.0.5
+
+-Add support for .Net 8.0
+
+## CI Pipeline
+
+The CI pipeline is defined in `azure-pipelines.yml` and uses `windows-latest` as the VM image. It restores NuGet packages, builds the solution, and runs tests.
 ## Developer [![Twitter Follow](https://img.shields.io/twitter/follow/hootanht?style=social)](https://twitter.com/hootanht)
 
 | Name | Github | Email | Telegram |
