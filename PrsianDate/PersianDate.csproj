@@ -20,6 +20,8 @@
 		<RepositoryType>git</RepositoryType>
 		<ImplicitUsings>disable</ImplicitUsings>
 		<Nullable>enable</Nullable>
+		<PackageSource>https://api.nuget.org/v3/index.json</PackageSource>
+		<PublishProfile>nuget</PublishProfile>
 	</PropertyGroup>
 
 	<ItemGroup>

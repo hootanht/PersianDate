@@ -15,7 +15,7 @@ Persian Data Library is a library that can be convert **Gregorian** (Milady) yea
 | Target | Branch | Version | Download link | Total downloads |
 | ------ | ------ | ------ | ------ | ------ |
 | Nuget | master | v1.0.5 | [![NuGet](https://img.shields.io/nuget/v/PersianDateShamsi.svg)](https://www.nuget.org/packages/PersianDateShamsi) | [![NuGet downloads](https://img.shields.io/nuget/dt/PersianDateShamsi.svg)](https://www.nuget.org/packages/PersianDateShamsi) |
-| Release | master | v1.0.5 | [![Build Status](https://dev.azure.com/hootanht/PersianDate/_apis/build/status/PersianDate?branchName=master)](https://hootanht.visualstudio.com/PersianDate) | |
+| Release | master | v1.0.5 | [![Build Status](https://github.com/hootanht/PersianDate/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/hootanht/PersianDate/actions) | |
 
 ## Cross Platform
 
@@ -82,7 +82,7 @@ Version 1.0.1
 
 ## CI Pipeline
 
-The CI pipeline is defined in `azure-pipelines.yml` and uses `windows-latest` as the VM image. It restores NuGet packages, builds the solution, and runs tests.
+The CI pipeline is defined in `.github/workflows/ci-cd.yml` and uses `windows-latest` as the VM image. It restores NuGet packages, builds the solution, runs tests, and publishes the NuGet package.
 ## Developer [![Twitter Follow](https://img.shields.io/twitter/follow/hootanht?style=social)](https://twitter.com/hootanht)
 
 | Name | Github | Email | Telegram |
