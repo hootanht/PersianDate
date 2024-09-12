@@ -6,6 +6,7 @@ on:
   push:
     branches:
       - 'master'       # Run the workflow when pushing to the master branch
+  pull_request:       # Run the workflow on pull requests
 
 env:
   DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
@@ -87,10 +88,21 @@ jobs:
       - name: Setup .NET Core
         uses: actions/setup-dotnet@v4
 
+      # Authenticate with GitHub Packages using the GITHUB_TOKEN secret
+      - name: Authenticate with GitHub Packages
+        run: dotnet nuget add source https://nuget.pkg.github.com/hootanht/index.json -n github -u ${{ github.actor }} -p ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text
+
+      # Publish all NuGet packages to GitHub Packages
+      - name: Publish NuGet package to GitHub Packages
+        run: |
+          foreach($file in (Get-ChildItem "${{ env.NuGetDirectory }}" -Recurse -Include *.nupkg)) {
+              dotnet nuget push $file --api-key "${{ secrets.GITHUB_TOKEN }}" --source https://nuget.pkg.github.com/hootanht/index.json --skip-duplicate
+          }
+
       # Publish all NuGet packages to NuGet.org
       # Use --skip-duplicate to prevent errors if a package with the same version already exists.
       # If you retry a failed workflow, already published packages will be skipped without error.
-      - name: Publish NuGet package
+      - name: Publish NuGet package to NuGet.org
         run: |
           foreach($file in (Get-ChildItem "${{ env.NuGetDirectory }}" -Recurse -Include *.nupkg)) {
               dotnet nuget push $file --api-key "${{ secrets.NUGET_APIKEY }}" --source https://api.nuget.org/v3/index.json --skip-duplicate
