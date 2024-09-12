@@ -8,7 +8,7 @@ namespace PersianDateTests
     public class ToShamsiTest
     {
         //My Birthday
-        DateTime dateTime = new DateTime(1998, 1, 11);
+        DateTime? dateTime = new DateTime(1998, 1, 11);
         [TestMethod]
         public void ToShamsiDateTest()
         {
@@ -23,6 +23,16 @@ namespace PersianDateTests
         public void ToLongShamsiDateTest()
         {
             Assert.AreEqual("یکشنبه 21 دی 1376", dateTime.ToLongShamsiDate());
+        }
+
+        // Additional test methods for edge cases and invalid inputs
+        [TestMethod]
+        public void NullDateTimeTest()
+        {
+            DateTime? nullDateTime = null;
+            Assert.IsNull(nullDateTime.ToShamsiDate());
+            Assert.IsNull(nullDateTime.ToShortShamsiDate());
+            Assert.IsNull(nullDateTime.ToLongShamsiDate());
         }
     }
 }

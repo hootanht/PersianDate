@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Globalization;
 
 namespace PersianDate
@@ -13,7 +13,17 @@ namespace PersianDate
         /// <returns></returns>
         public int? GetShamsiYear(DateTime? dateTime)
         {
-            return dateTime.HasValue ? persianCalendar.GetYear(dateTime.Value) : null;
+            if (!dateTime.HasValue)
+                return null;
+
+            try
+            {
+                return persianCalendar.GetYear(dateTime.Value);
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                return null;
+            }
         }
         /// <summary>
         /// Get Short Shamsi Year From Miladi Year In String
@@ -31,7 +41,17 @@ namespace PersianDate
         /// <returns></returns>
         public string? GetShamsiYearToString(DateTime? dateTime)
         {
-            return dateTime.HasValue ? persianCalendar.GetYear(dateTime.Value).ToString() : null;
+            if (!dateTime.HasValue)
+                return null;
+
+            try
+            {
+                return persianCalendar.GetYear(dateTime.Value).ToString();
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                return null;
+            }
         }
 
         /// <summary>
@@ -56,7 +76,7 @@ namespace PersianDate
         /// </summary>
         /// <param name="dateTime">Enter The Jalali DateTime</param>
         /// <returns></returns>
-        public int? GetShamsiMonthBunber(DateTime? dateTime)
+        public int? GetShamsiMonthNumber(DateTime? dateTime)
         {
             return dateTime.HasValue ? persianCalendar.GetMonth(dateTime.Value) : null;
         }

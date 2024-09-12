@@ -8,7 +8,7 @@ namespace PersianDateTests
     public class DateTest
     {
         //My Birthday
-        DateTime dateTime = new DateTime(1998, 1, 11);
+        DateTime? dateTime = new DateTime(1998, 1, 11);
         PersianDateShamsi persianDateShamsi = new PersianDateShamsi();
         [TestMethod]
         public void YearTest()
@@ -33,7 +33,7 @@ namespace PersianDateTests
         [TestMethod]
         public void MonthStringTest()
         {
-            Assert.AreEqual("10", persianDateShamsi.GetShamsiMonthString(dateTime));
+            Assert.AreEqual("10", persianDateShamsi.GetShamsiMonthString(dateTime.Value));
         }
         [TestMethod]
         public void MonthNameTest()
@@ -59,6 +59,23 @@ namespace PersianDateTests
         public void DayShortNameTest()
         {
             Assert.AreEqual("ی", persianDateShamsi.GetShamsiDayShortName(dateTime));
+        }
+
+        // Additional test methods for edge cases and invalid inputs
+        [TestMethod]
+        public void NullDateTimeTest()
+        {
+            DateTime? nullDateTime = null;
+            Assert.IsNull(persianDateShamsi.GetShamsiYear(nullDateTime));
+            Assert.IsNull(persianDateShamsi.GetShortShamsiYear(nullDateTime));
+            Assert.IsNull(persianDateShamsi.GetShamsiYearToString(nullDateTime));
+            Assert.IsNull(persianDateShamsi.GetShamsiMonth(nullDateTime));
+            Assert.IsNull(persianDateShamsi.GetShamsiMonthNumber(nullDateTime));
+            Assert.IsNull(persianDateShamsi.GetShamsiMonthName(nullDateTime));
+            Assert.IsNull(persianDateShamsi.GetShamsiDay(nullDateTime));
+            Assert.IsNull(persianDateShamsi.GetShamsiDayString(nullDateTime));
+            Assert.IsNull(persianDateShamsi.GetShamsiDayName(nullDateTime));
+            Assert.IsNull(persianDateShamsi.GetShamsiDayShortName(nullDateTime));
         }
     }
 }
