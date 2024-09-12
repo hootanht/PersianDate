@@ -8,7 +8,7 @@
 		<PackageIcon>icon.png</PackageIcon>
 		<PackageIconUrl />
 		<Description>Persian Data Library is a library that can be convert Gregorian (Gregorian) year to Solar Hijri (Shamsi) year in simplest way!</Description>
-		<Copyright>© 2023</Copyright>
+		<Copyright>© 2024</Copyright>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageId>PersianDateShamsi</PackageId>
 		<PackageTags>persian,persian calender,persian date,shamsi,jalali</PackageTags>
