@@ -42,10 +42,19 @@ string shamsiDayName = persianDate.GetShamsiDayName(now);
 string shamsiDayShortName = persianDate.GetShamsiDayShortName(now);
 
 Console.WriteLine($"Year: {shamsiYear}");
+// Output: Year: 1402
+
 Console.WriteLine($"Month: {shamsiMonthName}");
+// Output: Month: فروردین
+
 Console.WriteLine($"Day: {shamsiDayString}");
+// Output: Day: 01
+
 Console.WriteLine($"Day Name: {shamsiDayName}");
+// Output: Day Name: سه‌شنبه
+
 Console.WriteLine($"Short Day Name: {shamsiDayShortName}");
+// Output: Short Day Name: سه‌
 ```
 
 ### Extension Methods
@@ -56,14 +65,23 @@ using PersianDate;
 DateTime? dateTime = new DateTime(2023, 10, 5);
 DateTimeOffset? dateTimeOffset = new DateTimeOffset(2023, 10, 5, 0, 0, 0, TimeSpan.Zero);
 
-Console.WriteLine(dateTime.ToShamsiDate());        // Output: 1402/07/13
-Console.WriteLine(dateTimeOffset.ToShamsiDate());  // Output: 1402/07/13
+Console.WriteLine(dateTime.ToShamsiDate());        
+// Output: 1402/07/13
 
-Console.WriteLine(dateTime.ToShortShamsiDate());        // Output: 02/07/13
-Console.WriteLine(dateTimeOffset.ToShortShamsiDate());  // Output: 02/07/13
+Console.WriteLine(dateTimeOffset.ToShamsiDate());  
+// Output: 1402/07/13
 
-Console.WriteLine(dateTime.ToLongShamsiDate());        // Output: پنجشنبه 13 مهر 1402
-Console.WriteLine(dateTimeOffset.ToLongShamsiDate());  // Output: پنجشنبه 13 مهر 1402
+Console.WriteLine(dateTime.ToShortShamsiDate());        
+// Output: 02/07/13
+
+Console.WriteLine(dateTimeOffset.ToShortShamsiDate());  
+// Output: 02/07/13
+
+Console.WriteLine(dateTime.ToLongShamsiDate());        
+// Output: پنجشنبه 13 مهر 1402
+
+Console.WriteLine(dateTimeOffset.ToLongShamsiDate());  
+// Output: پنجشنبه 13 مهر 1402
 ```
 
 ### Converting to Gregorian
@@ -79,9 +97,16 @@ int gregorianMonth = toGregorian.GetGregorianMonth(1402, 1, 1);
 int gregorianDay = toGregorian.GetGregorianDay(1402, 1, 1);
 
 Console.WriteLine($"Gregorian Year: {gregorianYear}");
+// Output: Gregorian Year: 2023
+
 Console.WriteLine($"Gregorian Date: {gregorianDate}");
+// Output: Gregorian Date: 2023-03-21
+
 Console.WriteLine($"Gregorian Month: {gregorianMonth}");
+// Output: Gregorian Month: 3
+
 Console.WriteLine($"Gregorian Day: {gregorianDay}");
+// Output: Gregorian Day: 21
 ```
 
 ## Supported Platforms
@@ -116,6 +141,7 @@ Console.WriteLine($"Gregorian Day: {gregorianDay}");
 
 | Version | Changes                                      |
 |---------|----------------------------------------------|
+| 1.0.7   | Added support for `DateTimeOffset` in `ToGregorian` class and updated `PersianDateShamsi.cs` and `ToShamsi.cs` accordingly |
 | 1.0.6   | Added support for .NET 8.0                   |
 | 1.0.4   | Added support for .NET 5.0 and 6.0           |
 | 1.0.3   | Changed from .NET Standard 2.0 to .NET 7.0   |
