@@ -2,111 +2,138 @@
 
 ![Persian Date Library](https://lh3.googleusercontent.com/p_InfUloerXCEMJLLGA4n8HAQT7yR1kTn53cpYwFlFHkqa9TlaXE9K6BVef6i19JJzo=s180-rw)
 
-Persian Data Library is a library that can be convert **Gregorian** (Milady) year to **Solar Hijri** (Shamsi) year in simplest way!
+Convert Gregorian (Miladi) dates to Solar Hijri (Shamsi) dates with ease!
 
--------------------------
+[![NuGet](https://img.shields.io/nuget/v/PersianDateShamsi.svg)](https://www.nuget.org/packages/PersianDateShamsi)
+[![NuGet downloads](https://img.shields.io/nuget/dt/PersianDateShamsi.svg)](https://www.nuget.org/packages/PersianDateShamsi)
+[![Build Status](https://github.com/hootanht/PersianDate/actions/workflows/CI.yml/badge.svg)](https://github.com/hootanht/PersianDate/actions)
+[![Build Status](https://github.com/hootanht/PersianDate/actions/workflows/CD.yml/badge.svg)](https://github.com/hootanht/PersianDate/actions)
 
-| Target | Branch | Version |
-| ------ | ------ | ------ |
-| Github | master | v1.0.5 | 
+## Features
 
+- Convert Gregorian dates to Shamsi (Persian) dates
+- Support for both `DateTime` and `DateTimeOffset`
+- Get Shamsi year, month, and day components
+- Get Shamsi month and day names
+- Extension methods for easy conversion
 
-## Persian Date Public Version
-| Target | Branch | Version | Download link | Total downloads | CI Build Status | CD Build Status |
-| ------ | ------ | ------ | ------ | ------ | ------ | ------ |
-| Nuget | master | v1.0.6 | [![NuGet](https://img.shields.io/nuget/v/PersianDateShamsi.svg)](https://www.nuget.org/packages/PersianDateShamsi) | [![NuGet downloads](https://img.shields.io/nuget/dt/PersianDateShamsi.svg)](https://www.nuget.org/packages/PersianDateShamsi) | [![Build Status](https://github.com/hootanht/PersianDate/actions/workflows/CI.yml/badge.svg)](https://github.com/hootanht/PersianDate/actions) | [![Build Status](https://github.com/hootanht/PersianDate/actions/workflows/CD.yml/badge.svg)](https://github.com/hootanht/PersianDate/actions) |
-| Release | master | v1.0.5 | [![Build Status](https://github.com/hootanht/PersianDate/actions/workflows/CI.yml/badge.svg)](https://github.com/hootanht/PersianDate/actions) | | [![Build Status](https://github.com/hootanht/PersianDate/actions/workflows/CI.yml/badge.svg)](https://github.com/hootanht/PersianDate/actions) | [![Build Status](https://github.com/hootanht/PersianDate/actions/workflows/CD.yml/badge.svg)](https://github.com/hootanht/PersianDate/actions) |
+## Installation
 
-## Cross Platform
+Install the package via NuGet:
 
-| Platform | Supported Version |
-| ------ | ------ |
-| .NET | 8.0 |
-
-## Code Example
-
-```c#
-PersianDateShamsi persianDateShamsi = new PersianDateShamsi();
-    
-    Console.WriteLine(persianDateShamsi.GetShamsiYear(DateTime.Now));
-    //Result : 1398
-    
-    Console.WriteLine(persianDateShamsi.GetShamsiMonthName(DateTime.Now));
-    //Result : بهمن
-    
-    Console.WriteLine(persianDateShamsi.GetShamsiDayString(DateTime.Now));
-    //Result : 03
-    
-    Console.WriteLine(persianDateShamsi.GetShamsiDayName(DateTime.Now));
-    //Result : پنجشنبه
-    
-    Console.WriteLine(persianDateShamsi.GetShamsiDayShortName(DateTime.Now));
-    //Result : پ
+```sh
+dotnet add package PersianDateShamsi
 ```
 
-Extension Method For DateTime
+## Usage
 
-```c#
+### Basic Conversion
 
-    Console.WriteLine(DateTime.Now.ToShamsiDate());
-    //Result : 1398/11/03
-    
-    Console.WriteLine(DateTime.Now.ToShortShamsiDate());
-    //Result : 98/11/03
-    
-    Console.WriteLine(DateTime.Now.ToLongShamsiDate());
-    //Result : پنجشنبه 3 بهمن 1398
+```csharp
+using PersianDate;
+
+PersianDateShamsi persianDate = new PersianDateShamsi();
+DateTime now = DateTime.Now;
+
+int shamsiYear = persianDate.GetShamsiYear(now);
+string shamsiMonthName = persianDate.GetShamsiMonthName(now);
+string shamsiDayString = persianDate.GetShamsiDayString(now);
+string shamsiDayName = persianDate.GetShamsiDayName(now);
+string shamsiDayShortName = persianDate.GetShamsiDayShortName(now);
+
+Console.WriteLine($"Year: {shamsiYear}");
+Console.WriteLine($"Month: {shamsiMonthName}");
+Console.WriteLine($"Day: {shamsiDayString}");
+Console.WriteLine($"Day Name: {shamsiDayName}");
+Console.WriteLine($"Short Day Name: {shamsiDayShortName}");
 ```
 
-## Version changes
-Version 1.0.6
+### Extension Methods
 
--Add support for .Net 8.0
+```csharp
+using PersianDate;
 
-Version 1.0.4
+DateTime? dateTime = new DateTime(2023, 10, 5);
+DateTimeOffset? dateTimeOffset = new DateTimeOffset(2023, 10, 5, 0, 0, 0, TimeSpan.Zero);
 
--Add support for .Net 5.0 and 6.0
+Console.WriteLine(dateTime.ToShamsiDate());        // Output: 1402/07/13
+Console.WriteLine(dateTimeOffset.ToShamsiDate());  // Output: 1402/07/13
 
-Version 1.0.3
+Console.WriteLine(dateTime.ToShortShamsiDate());        // Output: 02/07/13
+Console.WriteLine(dateTimeOffset.ToShortShamsiDate());  // Output: 02/07/13
 
--Change .Net Standard 2.0 To .NET 7.0
+Console.WriteLine(dateTime.ToLongShamsiDate());        // Output: پنجشنبه 13 مهر 1402
+Console.WriteLine(dateTimeOffset.ToLongShamsiDate());  // Output: پنجشنبه 13 مهر 1402
+```
 
-Version 1.0.2
+### Converting to Gregorian
 
--Improve Flexibility
+```csharp
+using PersianDate;
 
-Version 1.0.1
+ToGregorian toGregorian = new ToGregorian();
 
--Change .Net Standard 2.1 To 2.0 To Support More Platforms
+int gregorianYear = toGregorian.GetGregorianYear(1402, 1, 1);
+DateTime gregorianDate = toGregorian.ToGregorianDate(1402, 1, 1);
+int gregorianMonth = toGregorian.GetGregorianMonth(1402, 1, 1);
+int gregorianDay = toGregorian.GetGregorianDay(1402, 1, 1);
 
-## CI Pipeline
+Console.WriteLine($"Gregorian Year: {gregorianYear}");
+Console.WriteLine($"Gregorian Date: {gregorianDate}");
+Console.WriteLine($"Gregorian Month: {gregorianMonth}");
+Console.WriteLine($"Gregorian Day: {gregorianDay}");
+```
 
-The CI pipeline is now integrated into the CD pipeline and is defined in `.github/workflows/CI.yml`. It uses `macos-latest` as the VM image. The pipeline handles manual triggers, pull requests, and releases. It restores NuGet packages, builds the solution, runs tests, and validates the NuGet package. The pipeline installs .NET version 8.0.x to ensure compatibility with all targeted frameworks.
+## Supported Platforms
 
-## CD Pipeline
+- .NET 8.0
 
-The CD pipeline is defined in `.github/workflows/CD.yml` and uses `macos-latest` as the VM image. It includes steps for creating, validating, testing, and deploying the NuGet package. The pipeline handles manual triggers, pull requests, and releases. It uses environment variables for the NuGet directory and the latest versions of GitHub Actions for checkout, setup-dotnet, and upload-artifact. The pipeline installs .NET version 8.0.x to ensure compatibility with all targeted frameworks. Additionally, it includes a step to delete existing tags if they already exist before creating a new release to avoid the 'Validation Failed: already_exists' error. The step now handles the case where the tag deletion fails and ensures the deletion step successfully removes the existing tag before proceeding to create a new release.
+## Getting Started
 
-## Requirements
-
-- .NET 8.0 SDK
-
-## Setup and Run
-
-1. **Install .NET 8.0 SDK**: Download and install the .NET 8.0 SDK from the official [.NET website](https://dotnet.microsoft.com/download/dotnet/8.0).
-
-2. **Restore Dependencies**: Open a terminal or command prompt in the project directory and run:
+1. Install [.NET 8.0 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
+2. Clone the repository:
+   ```sh
+   git clone https://github.com/hootanht/PersianDate.git
+   ```
+3. Navigate to the project directory:
+   ```sh
+   cd PersianDate
+   ```
+4. Restore dependencies:
    ```sh
    dotnet restore
    ```
-
-3. **Build the Project**: Build the project by running:
+5. Build the project:
    ```sh
    dotnet build
    ```
-
-4. **Run Tests**: Run the tests to ensure everything is working correctly:
+6. Run tests:
    ```sh
    dotnet test
    ```
 
+## Version History
+
+| Version | Changes                                      |
+|---------|----------------------------------------------|
+| 1.0.6   | Added support for .NET 8.0                   |
+| 1.0.4   | Added support for .NET 5.0 and 6.0           |
+| 1.0.3   | Changed from .NET Standard 2.0 to .NET 7.0   |
+| 1.0.2   | Improved flexibility                         |
+| 1.0.1   | Changed from .NET Standard 2.1 to 2.0 for broader platform support |
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Support
+
+If you encounter any issues or have questions, please [open an issue](https://github.com/hootanht/PersianDate/issues) on GitHub.
+
+---
+
+Made with ❤️ by [Hootan Hemmati](https://github.com/hootanht)
