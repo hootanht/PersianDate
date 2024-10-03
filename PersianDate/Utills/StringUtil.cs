@@ -94,4 +94,66 @@ public static class StringUtil
     {
         return CultureInfo.CurrentCulture.TextInfo.ToTitleCase(input.ToLower());
     }
+    /// <summary>
+    /// Removes diacritical marks from Persian characters.
+    /// <example>
+    /// <code>
+    /// string normalizedString = StringUtil.RemoveDiacritics("مَدرَسِه"); // Returns "مدرسه"
+    /// </code>
+    /// </example>
+    /// </summary>
+    /// <param name="input">The input string.</param>
+    /// <returns>The string without diacritical marks.</returns>
+    public static string RemoveDiacritics(string input)
+    {
+        string[] diacritics = { "\u064B", "\u064C", "\u064D", "\u064E", "\u064F", "\u0650", "\u0651", "\u0652" };
+        foreach (string diacritic in diacritics)
+        {
+            input = input.Replace(diacritic, string.Empty);
+        }
+        return input;
+    }
+
+    /// <summary>
+    /// Converts Arabic numbers to Persian numbers in a string.
+    /// <example>
+    /// <code>
+    /// string persianNumbers = StringUtil.NormalizePersianNumbers("123٤٥٦"); // Returns "۱۲۳۴۵۶"
+    /// </code>
+    /// </example>
+    /// </summary>
+    /// <param name="input">The input string.</param>
+    /// <returns>The string with Persian numbers.</returns>
+    public static string NormalizePersianNumbers(string input)
+    {
+        return input
+            .Replace('0', '۰')
+            .Replace('1', '۱')
+            .Replace('2', '۲')
+            .Replace('3', '۳')
+            .Replace('4', '۴')
+            .Replace('5', '۵')
+            .Replace('6', '۶')
+            .Replace('7', '۷')
+            .Replace('8', '۸')
+            .Replace('9', '۹')
+            .Replace('٤', '۴')
+            .Replace('٥', '۵')
+            .Replace('٦', '۶');
+    }
+
+    /// <summary>
+    /// Checks if a character is a Persian letter.
+    /// <example>
+    /// <code>
+    /// bool isPersian = StringUtil.IsPersianLetter('م'); // Returns true
+    /// </code>
+    /// </example>
+    /// </summary>
+    /// <param name="input">The input character.</param>
+    /// <returns>True if the character is a Persian letter; otherwise, false.</returns>
+    public static bool IsPersianLetter(char input)
+    {
+        return input is >= '\u0600' and <= '\u06FF';
+    }
 }
