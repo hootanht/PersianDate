@@ -141,7 +141,7 @@ Console.WriteLine($"Gregorian Day: {gregorianDay}");
 
 | Version | Changes                                      |
 |---------|----------------------------------------------|
-| 1.0.7   | Added support for `DateTimeOffset` in `ToGregorian` class and updated `PersianDateShamsi.cs` and `ToShamsi.cs` accordingly |
+| 1.0.8   | Added support for `DateTimeOffset` in `ToGregorian` class and updated `PersianDateShamsi.cs` and `ToShamsi.cs` accordingly |
 | 1.0.6   | Added support for .NET 8.0                   |
 | 1.0.4   | Added support for .NET 5.0 and 6.0           |
 | 1.0.3   | Changed from .NET Standard 2.0 to .NET 7.0   |
