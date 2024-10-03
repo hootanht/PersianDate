@@ -5,7 +5,10 @@ on:
   workflow_dispatch: # Allow running the workflow manually from the GitHub UI
   push:
     branches:
-      - 'master'       # Run the workflow when pushing to the master branch
+      - 'master'
+    tags: 
+      - 'v*.*.*'       # Run the workflow on tags that match the pattern v*.*.*
+
   pull_request:       # Run the workflow on pull requests
 
 env:
@@ -18,10 +21,31 @@ defaults:
     shell: pwsh
 
 jobs:
+  build:
+      # Specify the type of runner to use. In this case, the latest macOS environment.
+      runs-on: macos-latest
+      
+      steps:
+      # Step 1: Check out the repository to the runner.
+      - uses: actions/checkout@v4
+      
+      # Step 2: Set up the .NET environment using the setup-dotnet action.
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+      
+      # Step 3: Restore the project's dependencies specified in the project file.
+      - name: Restore dependencies
+        run: dotnet restore
+      
+      # Step 4: Build the project in Release configuration.
+      - name: Build
+        run: dotnet build --configuration Release
+
   create_nuget:
+    needs: [ build ]
     runs-on: macos-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
       with:
         fetch-depth: 0 # Get all history to allow automatic versioning using MinVer
 
@@ -66,15 +90,16 @@ jobs:
 
   run_test:
     runs-on: macos-latest
+    needs: [ build ]
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
     - name: Run tests
       run: dotnet test --configuration Release
 
   deploy:
-    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+    if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/')
     runs-on: macos-latest
     needs: [ validate_nuget, run_test ]
     steps:
@@ -109,42 +134,27 @@ jobs:
           }
 
   create_github_release:
-    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+    if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/')
     runs-on: macos-latest
     needs: [ deploy ]
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
 
-      - name: Get version from csproj
-        id: get_version
-        run: |
-          $version = (Get-Content -Path PersianDate/PersianDate.csproj) -match '<Version>(.*)</Version>' | Out-Null; $matches[1]
-          echo "::set-output name=VERSION::$version"
-
+      # Create the GitHub release
       - name: Create GitHub Release
         id: create_release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: v${{ steps.get_version.outputs.VERSION }}
-          release_name: Release ${{ steps.get_version.outputs.VERSION }}
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
           body: |
-            ## What's Changed
-            ${{ github.event.head_commit.message }}
+            ## Changes in this Release
+            ${{ steps.create-release-notes.outputs.release-notes }}
           draft: false
           prerelease: false
-
-      - name: Upload Release Asset
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ${{ env.NuGetDirectory }}/*.nupkg
-          asset_name: PersianDateShamsi.${{ steps.get_version.outputs.VERSION }}.nupkg
-          asset_content_type: application/zip
