@@ -111,11 +111,11 @@ Console.WriteLine($"Gregorian Day: {gregorianDay}");
 
 ## Supported Platforms
 
-- .NET 8.0
+- .NET 9.0
 
 ## Getting Started
 
-1. Install [.NET 8.0 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
+1. Install [.NET 9.0 SDK](https://dotnet.microsoft.com/download/dotnet/9.0)
 2. Clone the repository:
    ```sh
    git clone https://github.com/hootanht/PersianDate.git
@@ -141,6 +141,7 @@ Console.WriteLine($"Gregorian Day: {gregorianDay}");
 
 | Version | Changes                                      |
 |---------|----------------------------------------------|
+| 1.0.9   | Upgraded to .NET 9.0                         |
 | 1.0.8   | Added support for `DateTimeOffset` in `ToGregorian` class and updated `PersianDateShamsi.cs` and `ToShamsi.cs` accordingly |
 | 1.0.6   | Added support for .NET 8.0                   |
 | 1.0.4   | Added support for .NET 5.0 and 6.0           |

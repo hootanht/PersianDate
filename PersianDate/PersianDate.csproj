@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net8.0</TargetFrameworks>
+		<TargetFrameworks>net9.0</TargetFrameworks>
 		<AssemblyName>PersianDate</AssemblyName>
 		<RootNamespace>PersianDate</RootNamespace>
 		<Authors>hootanht</Authors>
@@ -9,14 +9,14 @@
 		<PackageIconUrl />
 		<Description>Persian Data Library is a library that can be convert Gregorian (Gregorian)
 			year to Solar Hijri (Shamsi) year in simplest way!</Description>
-		<Copyright>© 2024</Copyright>
+		<Copyright>© 2025</Copyright>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageId>PersianDateShamsi</PackageId>
 		<PackageTags>persian,persian calender,persian date,shamsi,jalali</PackageTags>
-		<PackageReleaseNotes>Add support for .Net 8.0</PackageReleaseNotes>
+		<PackageReleaseNotes>Add support for .Net 9.0</PackageReleaseNotes>
 		<NeutralLanguage>en-US</NeutralLanguage>
 		<PackageProjectUrl>https://github.com/hootanht/PersianDate</PackageProjectUrl>
-		<Version>1.8.0</Version>
+		<Version>1.9.0</Version>
 		<RepositoryUrl>https://github.com/hootanht/PersianDate</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
 		<ImplicitUsings>disable</ImplicitUsings>
@@ -32,7 +32,7 @@
 	</PropertyGroup>
 
 	<PropertyGroup>
-		<VersionPrefix>1.8.0</VersionPrefix>
+		<VersionPrefix>1.9.0</VersionPrefix>
 		<VersionSuffix>ci</VersionSuffix>
 	</PropertyGroup>
 
