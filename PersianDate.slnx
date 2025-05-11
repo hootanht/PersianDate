@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="PersianDate/PersianDate.csproj" />
+  <Project Path="PersianDateTests/PersianDateTests.csproj" />
+</Solution>

@@ -111,6 +111,10 @@ Console.WriteLine($"Gregorian Day: {gregorianDay}");
 
 ## Supported Platforms
 
+- .NET 5.0
+- .NET 6.0
+- .NET 7.0
+- .NET 8.0
 - .NET 9.0
 
 ## Getting Started
@@ -141,6 +145,7 @@ Console.WriteLine($"Gregorian Day: {gregorianDay}");
 
 | Version | Changes                                      |
 |---------|----------------------------------------------|
+| 1.9.1   | Add support for older .NET versions (netstandard2.0, netstandard2.1, netcoreapp3.1, net5.0) and .NET 9.0 |
 | 1.0.9   | Upgraded to .NET 9.0                         |
 | 1.0.8   | Added support for `DateTimeOffset` in `ToGregorian` class and updated `PersianDateShamsi.cs` and `ToShamsi.cs` accordingly |
 | 1.0.6   | Added support for .NET 8.0                   |
