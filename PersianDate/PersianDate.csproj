@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net5.0;net6.0;net7.0;net8.0;net9.0</TargetFrameworks>
+		<TargetFrameworks>net6.0;net7.0;net8.0;net9.0</TargetFrameworks>
 		<LangVersion>latest</LangVersion>
 		<AssemblyName>PersianDate</AssemblyName>
 		<RootNamespace>PersianDate</RootNamespace>
@@ -14,10 +14,10 @@
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageId>PersianDateShamsi</PackageId>
 	<PackageTags>persian,persian calender,persian date,shamsi,jalali</PackageTags>
-		<PackageReleaseNotes>Add support for older .NET versions (netstandard2.0, netstandard2.1, netcoreapp3.1, net5.0) and .Net 9.0</PackageReleaseNotes>
+		<PackageReleaseNotes>Remove .NET 5.0 support and modernize CI/CD workflows with automated changelog generation</PackageReleaseNotes>
 		<NeutralLanguage>en-US</NeutralLanguage>
 		<PackageProjectUrl>https://github.com/hootanht/PersianDate</PackageProjectUrl>
-		<Version>1.9.1</Version>		<RepositoryUrl>https://github.com/hootanht/PersianDate</RepositoryUrl>
+		<Version>1.9.2</Version>		<RepositoryUrl>https://github.com/hootanht/PersianDate</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
 		<ImplicitUsings>disable</ImplicitUsings>
 		<Nullable>enable</Nullable>
@@ -32,7 +32,7 @@
 		<EnablePackageValidation>true</EnablePackageValidation>
 	</PropertyGroup>
 	<PropertyGroup>
-		<VersionPrefix>1.9.1</VersionPrefix>
+		<VersionPrefix>1.9.2</VersionPrefix>
 		<VersionSuffix></VersionSuffix>
 	</PropertyGroup>
 

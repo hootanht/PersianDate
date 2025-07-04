@@ -30,11 +30,6 @@ jobs:
       - uses: actions/checkout@v4
 
       # Step 2: Set up all .NET environments
-      - name: Setup .NET 5.0
-        uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: "5.x.x"
-
       - name: Setup .NET 6.0
         uses: actions/setup-dotnet@v4
         with:
@@ -57,11 +52,11 @@ jobs:
 
       # Step 3: Restore the project's dependencies specified in the project file.
       - name: Restore dependencies
-        run: dotnet restore
+        run: dotnet restore PersianDate.slnx
 
       # Step 4: Build the project in Release configuration.
       - name: Build
-        run: dotnet build --configuration Release
+        run: dotnet build PersianDate.slnx --configuration Release --no-restore
 
   create_nuget:
     needs: [build]
@@ -76,7 +71,6 @@ jobs:
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: |
-            5.x.x
             6.x.x
             7.x.x
             8.x.x
@@ -102,7 +96,6 @@ jobs:
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: |
-            5.x.x
             6.x.x
             7.x.x
             8.x.x
@@ -130,11 +123,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Setup .NET 5.0
-        uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: "5.x.x"
-
       - name: Setup .NET 6.0
         uses: actions/setup-dotnet@v4
         with:
@@ -156,7 +144,7 @@ jobs:
           dotnet-version: "9.x.x"
 
       - name: Run tests
-        run: dotnet test --configuration Release
+        run: dotnet test PersianDate.slnx --configuration Release
 
   deploy:
     if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/')
@@ -174,7 +162,6 @@ jobs:
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: |
-            5.x.x
             6.x.x
             7.x.x
             8.x.x
@@ -207,28 +194,70 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Get full history for commit messages
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: |
-            5.x.x
             6.x.x
             7.x.x
             8.x.x
             9.x.x
 
-      # Create the GitHub release
+      # Get the previous tag for generating changelog
+      - name: Get previous tag
+        id: previous_tag
+        run: |
+          # Get all tags sorted by version
+          PREVIOUS_TAG=$(git tag --sort=-version:refname | grep -E '^v[0-9]+\.[0-9]+\.[0-9]+$' | sed -n '2p')
+          if [ -z "$PREVIOUS_TAG" ]; then
+            # If no previous tag, get the first commit
+            PREVIOUS_TAG=$(git rev-list --max-parents=0 HEAD)
+          fi
+          echo "previous_tag=$PREVIOUS_TAG" >> $GITHUB_OUTPUT
+          echo "Previous tag: $PREVIOUS_TAG"
+
+      # Generate changelog from commit messages
+      - name: Generate changelog
+        id: changelog
+        run: |
+          CURRENT_TAG=${GITHUB_REF#refs/tags/}
+          PREVIOUS_TAG="${{ steps.previous_tag.outputs.previous_tag }}"
+
+          echo "## Changes in $CURRENT_TAG" > changelog.md
+          echo "" >> changelog.md
+
+          # Get commit messages between tags
+          if [ "$PREVIOUS_TAG" != "" ]; then
+            echo "### 📝 Commits since $PREVIOUS_TAG:" >> changelog.md
+            git log --pretty=format:"- %s (%h)" ${PREVIOUS_TAG}..HEAD >> changelog.md
+          else
+            echo "### 📝 All commits:" >> changelog.md
+            git log --pretty=format:"- %s (%h)" >> changelog.md
+          fi
+
+          echo "" >> changelog.md
+          echo "**Full Changelog**: https://github.com/${{ github.repository }}/compare/${PREVIOUS_TAG}...${CURRENT_TAG}" >> changelog.md
+
+          # Read the changelog content
+          CHANGELOG_CONTENT=$(cat changelog.md)
+
+          # Set output with proper escaping
+          echo "content<<EOF" >> $GITHUB_OUTPUT
+          echo "$CHANGELOG_CONTENT" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      # Create the GitHub release using the modern approach
       - name: Create GitHub Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: softprops/action-gh-release@v2
         with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
-          body: |
-            ## Changes in this Release
-            Please see the commit history for details of changes in this release.
+          tag_name: ${{ github.ref_name }}
+          name: Release ${{ github.ref_name }}
+          body: ${{ steps.changelog.outputs.content }}
           draft: false
           prerelease: false
+          generate_release_notes: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
