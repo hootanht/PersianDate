@@ -65,22 +65,22 @@ using PersianDate;
 DateTime? dateTime = new DateTime(2023, 10, 5);
 DateTimeOffset? dateTimeOffset = new DateTimeOffset(2023, 10, 5, 0, 0, 0, TimeSpan.Zero);
 
-Console.WriteLine(dateTime.ToShamsiDate());        
+Console.WriteLine(dateTime.ToShamsiDate());
 // Output: 1402/07/13
 
-Console.WriteLine(dateTimeOffset.ToShamsiDate());  
+Console.WriteLine(dateTimeOffset.ToShamsiDate());
 // Output: 1402/07/13
 
-Console.WriteLine(dateTime.ToShortShamsiDate());        
+Console.WriteLine(dateTime.ToShortShamsiDate());
 // Output: 02/07/13
 
-Console.WriteLine(dateTimeOffset.ToShortShamsiDate());  
+Console.WriteLine(dateTimeOffset.ToShortShamsiDate());
 // Output: 02/07/13
 
-Console.WriteLine(dateTime.ToLongShamsiDate());        
+Console.WriteLine(dateTime.ToLongShamsiDate());
 // Output: پنجشنبه 13 مهر 1402
 
-Console.WriteLine(dateTimeOffset.ToLongShamsiDate());  
+Console.WriteLine(dateTimeOffset.ToLongShamsiDate());
 // Output: پنجشنبه 13 مهر 1402
 ```
 
@@ -111,7 +111,6 @@ Console.WriteLine($"Gregorian Day: {gregorianDay}");
 
 ## Supported Platforms
 
-- .NET 5.0
 - .NET 6.0
 - .NET 7.0
 - .NET 8.0
@@ -143,16 +142,17 @@ Console.WriteLine($"Gregorian Day: {gregorianDay}");
 
 ## Version History
 
-| Version | Changes                                      |
-|---------|----------------------------------------------|
-| 1.9.1   | Add support for older .NET versions (netstandard2.0, netstandard2.1, netcoreapp3.1, net5.0) and .NET 9.0 |
-| 1.0.9   | Upgraded to .NET 9.0                         |
+| Version | Changes                                                                                                                    |
+| ------- | -------------------------------------------------------------------------------------------------------------------------- |
+| 1.9.2   | Remove .NET 5.0 support and modernize CI/CD workflows with automated changelog generation                                  |
+| 1.9.1   | Add support for older .NET versions (netstandard2.0, netstandard2.1, netcoreapp3.1) and .NET 9.0                           |
+| 1.0.9   | Upgraded to .NET 9.0                                                                                                       |
 | 1.0.8   | Added support for `DateTimeOffset` in `ToGregorian` class and updated `PersianDateShamsi.cs` and `ToShamsi.cs` accordingly |
-| 1.0.6   | Added support for .NET 8.0                   |
-| 1.0.4   | Added support for .NET 5.0 and 6.0           |
-| 1.0.3   | Changed from .NET Standard 2.0 to .NET 7.0   |
-| 1.0.2   | Improved flexibility                         |
-| 1.0.1   | Changed from .NET Standard 2.1 to 2.0 for broader platform support |
+| 1.0.6   | Added support for .NET 8.0                                                                                                 |
+| 1.0.4   | Added support for .NET 5.0 and 6.0                                                                                         |
+| 1.0.3   | Changed from .NET Standard 2.0 to .NET 7.0                                                                                 |
+| 1.0.2   | Improved flexibility                                                                                                       |
+| 1.0.1   | Changed from .NET Standard 2.1 to 2.0 for broader platform support                                                         |
 
 ## Contributing
 

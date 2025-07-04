@@ -82,6 +82,11 @@ public class DateTest
     public void MonthStringTest()
     {
         // Arrange
+        if (!dateTime.HasValue)
+        {
+            Assert.Fail("DateTime is null");
+            return;
+        }
         DateTime testDate = dateTime.Value;
 
         // Act
@@ -258,7 +263,7 @@ public class DateTest
         string? validShortYear = persianDateShamsi.GetShortShamsiYear(validDate);
         string? validYearString = persianDateShamsi.GetShamsiYearToString(validDate);
         int? validMonth = persianDateShamsi.GetShamsiMonth(validDate);
-        string validMonthString = persianDateShamsi.GetShamsiMonthString(validDate.Value);
+        string validMonthString = validDate.HasValue ? persianDateShamsi.GetShamsiMonthString(validDate.Value) : string.Empty;
         string? validMonthName = persianDateShamsi.GetShamsiMonthName(validDate);
         int? validDay = persianDateShamsi.GetShamsiDay(validDate);
         string? validDayString = persianDateShamsi.GetShamsiDayString(validDate);
