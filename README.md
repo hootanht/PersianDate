@@ -302,6 +302,27 @@ Console.WriteLine($"Gregorian Day: {gregorianDay}");
 | `mm` | Minutes | ۳۰ | 30 |
 | `ss` | Seconds | ۴۵ | 45 |
 
+## 🏗️ Project Structure
+
+```
+PersianDate/
+├── Core/                    # Core date conversion functionality
+│   ├── PersianDateShamsi.cs    # Main Persian date conversion class
+│   ├── ToGregorian.cs          # Gregorian conversion utilities
+│   └── ToShamsi.cs            # Extension methods for conversion
+├── Formatting/              # Enhanced formatting features
+│   └── ShamsiDateFormatter.cs  # Advanced formatting with styles and patterns
+├── Parsing/                 # Date parsing and validation
+│   └── ShamsiDateParser.cs     # Parse Persian date strings with validation
+├── Culture/                 # Localization and culture support
+│   └── ShamsiCultureInfo.cs    # Persian and English culture definitions
+├── Extensions/              # Extension methods and operations
+│   ├── ShamsiCalendarExtensions.cs   # DateTime extension methods
+│   └── ShamsiCalendarOperations.cs   # Advanced calendar operations
+└── Utils/                   # Utility classes
+    └── StringUtil.cs           # String manipulation utilities
+```
+
 ## Getting Started
 
 1. Install [.NET 9.0 SDK](https://dotnet.microsoft.com/download/dotnet/9.0)
