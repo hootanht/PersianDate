@@ -2,26 +2,29 @@ name: CI
 
 on:
   workflow_dispatch: # Allow running the workflow manually from the GitHub UI
-  pull_request:       # Run the workflow on pull requests
+  pull_request: # Run the workflow on pull requests
 
 jobs:
   build:
     runs-on: macos-latest
+    strategy:
+      matrix:
+        dotnet-version: ["5.0.x", "6.0.x", "7.0.x", "8.0.x", "9.0.x"]
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: '8.0.x'
+      - name: Setup .NET ${{ matrix.dotnet-version }}
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: ${{ matrix.dotnet-version }}
 
-    - name: Restore dependencies
-      run: dotnet restore
+      - name: Restore dependencies
+        run: dotnet restore
 
-    - name: Build solution
-      run: dotnet build --configuration Release --no-restore
+      - name: Build solution with .NET ${{ matrix.dotnet-version }}
+        run: dotnet build --configuration Release --no-restore
 
-    - name: Run tests
-      run: dotnet test --no-restore --verbosity normal
+      - name: Run tests with .NET ${{ matrix.dotnet-version }}
+        run: dotnet test --no-restore --verbosity normal

@@ -5,11 +5,11 @@ on:
   workflow_dispatch: # Allow running the workflow manually from the GitHub UI
   push:
     branches:
-      - 'master'
-    tags: 
-      - 'v*.*.*'       # Run the workflow on tags that match the pattern v*.*.*
+      - "master"
+    tags:
+      - "v*.*.*" # Run the workflow on tags that match the pattern v*.*.*
 
-  pull_request:       # Run the workflow on pull requests
+  pull_request: # Run the workflow on pull requests
 
 env:
   DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
@@ -22,55 +22,74 @@ defaults:
 
 jobs:
   build:
-      # Specify the type of runner to use. In this case, the latest macOS environment.
-      runs-on: macos-latest
-      
-      steps:
+    # Specify the type of runner to use. In this case, the latest macOS environment.
+    runs-on: macos-latest
+    strategy:
+      matrix:
+        dotnet-version: ["5.0.x", "6.0.x", "7.0.x", "8.0.x", "9.0.x"]
+
+    steps:
       # Step 1: Check out the repository to the runner.
       - uses: actions/checkout@v4
-      
+
       # Step 2: Set up the .NET environment using the setup-dotnet action.
-      - name: Setup .NET
+      - name: Setup .NET ${{ matrix.dotnet-version }}
         uses: actions/setup-dotnet@v4
-      
+        with:
+          dotnet-version: ${{ matrix.dotnet-version }}
+
       # Step 3: Restore the project's dependencies specified in the project file.
       - name: Restore dependencies
         run: dotnet restore
-      
+
       # Step 4: Build the project in Release configuration.
-      - name: Build
+      - name: Build with .NET ${{ matrix.dotnet-version }}
         run: dotnet build --configuration Release
 
   create_nuget:
-    needs: [ build ]
+    needs: [build]
     runs-on: macos-latest
     steps:
-    - uses: actions/checkout@v4
-      with:
-        fetch-depth: 0 # Get all history to allow automatic versioning using MinVer
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Get all history to allow automatic versioning using MinVer
 
-    # Install the .NET SDK indicated in the global.json file
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v4
+      # Install the .NET SDK indicated in the global.json file
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: |
+            5.0.x
+            6.0.x
+            7.0.x
+            8.0.x
+            9.0.x
 
-    # Create the NuGet package in the folder from the environment variable NuGetDirectory
-    - run: dotnet pack --configuration Release --output ${{ env.NuGetDirectory }}
+      # Create the NuGet package in the folder from the environment variable NuGetDirectory
+      - run: dotnet pack --configuration Release --output ${{ env.NuGetDirectory }}
 
-    # Publish the NuGet package as an artifact, so they can be used in the following jobs
-    - uses: actions/upload-artifact@v4
-      with:
-        name: nuget
-        if-no-files-found: error
-        retention-days: 7
-        path: ${{ env.NuGetDirectory }}/*.nupkg
+      # Publish the NuGet package as an artifact, so they can be used in the following jobs
+      - uses: actions/upload-artifact@v4
+        with:
+          name: nuget
+          if-no-files-found: error
+          retention-days: 7
+          path: ${{ env.NuGetDirectory }}/*.nupkg
 
   validate_nuget:
     runs-on: macos-latest
-    needs: [ create_nuget ]
+    needs: [create_nuget]
     steps:
       # Install the .NET SDK indicated in the global.json file
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: |
+            5.0.x
+            6.0.x
+            7.0.x
+            8.0.x
+            9.0.x
 
       # Download the NuGet package created in the previous job
       - uses: actions/download-artifact@v4
@@ -90,18 +109,23 @@ jobs:
 
   run_test:
     runs-on: macos-latest
-    needs: [ build ]
+    needs: [build]
+    strategy:
+      matrix:
+        dotnet-version: ["5.0.x", "6.0.x", "7.0.x", "8.0.x", "9.0.x"]
     steps:
-    - uses: actions/checkout@v4
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v4
-    - name: Run tests
-      run: dotnet test --configuration Release
+      - uses: actions/checkout@v4
+      - name: Setup .NET ${{ matrix.dotnet-version }}
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: ${{ matrix.dotnet-version }}
+      - name: Run tests with .NET ${{ matrix.dotnet-version }}
+        run: dotnet test --configuration Release
 
   deploy:
     if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/')
     runs-on: macos-latest
-    needs: [ validate_nuget, run_test ]
+    needs: [validate_nuget, run_test]
     steps:
       # Download the NuGet package created in the previous job
       - uses: actions/download-artifact@v4
@@ -112,6 +136,13 @@ jobs:
       # Install the .NET SDK indicated in the global.json file
       - name: Setup .NET Core
         uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: |
+            5.0.x
+            6.0.x
+            7.0.x
+            8.0.x
+            9.0.x
 
       # Authenticate with GitHub Packages using the GITHUB_TOKEN secret
       - name: Authenticate with GitHub Packages
@@ -136,13 +167,20 @@ jobs:
   create_github_release:
     if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/')
     runs-on: macos-latest
-    needs: [ deploy ]
+    needs: [deploy]
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: |
+            5.0.x
+            6.0.x
+            7.0.x
+            8.0.x
+            9.0.x
 
       # Create the GitHub release
       - name: Create GitHub Release
@@ -155,6 +193,6 @@ jobs:
           release_name: Release ${{ github.ref }}
           body: |
             ## Changes in this Release
-            ${{ steps.create-release-notes.outputs.release-notes }}
+            Please see the commit history for details of changes in this release.
           draft: false
           prerelease: false
