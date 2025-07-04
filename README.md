@@ -144,7 +144,7 @@ Console.WriteLine($"Gregorian Day: {gregorianDay}");
 
 | Version | Changes                                                                                                                    |
 | ------- | -------------------------------------------------------------------------------------------------------------------------- |
-| 1.9.2   | Remove .NET 5.0 support and modernize CI/CD workflows with automated changelog generation                                   |
+| 1.9.2   | Remove .NET 5.0 support and modernize CI/CD workflows with automated changelog generation                                  |
 | 1.9.1   | Add support for older .NET versions (netstandard2.0, netstandard2.1, netcoreapp3.1) and .NET 9.0                           |
 | 1.0.9   | Upgraded to .NET 9.0                                                                                                       |
 | 1.0.8   | Added support for `DateTimeOffset` in `ToGregorian` class and updated `PersianDateShamsi.cs` and `ToShamsi.cs` accordingly |

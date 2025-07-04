@@ -225,10 +225,10 @@ jobs:
         run: |
           CURRENT_TAG=${GITHUB_REF#refs/tags/}
           PREVIOUS_TAG="${{ steps.previous_tag.outputs.previous_tag }}"
-          
+
           echo "## Changes in $CURRENT_TAG" > changelog.md
           echo "" >> changelog.md
-          
+
           # Get commit messages between tags
           if [ "$PREVIOUS_TAG" != "" ]; then
             echo "### 📝 Commits since $PREVIOUS_TAG:" >> changelog.md
@@ -237,13 +237,13 @@ jobs:
             echo "### 📝 All commits:" >> changelog.md
             git log --pretty=format:"- %s (%h)" >> changelog.md
           fi
-          
+
           echo "" >> changelog.md
           echo "**Full Changelog**: https://github.com/${{ github.repository }}/compare/${PREVIOUS_TAG}...${CURRENT_TAG}" >> changelog.md
-          
+
           # Read the changelog content
           CHANGELOG_CONTENT=$(cat changelog.md)
-          
+
           # Set output with proper escaping
           echo "content<<EOF" >> $GITHUB_OUTPUT
           echo "$CHANGELOG_CONTENT" >> $GITHUB_OUTPUT
