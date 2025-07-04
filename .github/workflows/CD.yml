@@ -209,6 +209,7 @@ jobs:
       # Get the previous tag for generating changelog
       - name: Get previous tag
         id: previous_tag
+        shell: bash
         run: |
           # Get all tags sorted by version
           PREVIOUS_TAG=$(git tag --sort=-version:refname | grep -E '^v[0-9]+\.[0-9]+\.[0-9]+$' | sed -n '2p')
@@ -217,18 +218,17 @@ jobs:
             PREVIOUS_TAG=$(git rev-list --max-parents=0 HEAD)
           fi
           echo "previous_tag=$PREVIOUS_TAG" >> $GITHUB_OUTPUT
-          echo "Previous tag: $PREVIOUS_TAG"
-
-      # Generate changelog from commit messages
+          echo "Previous tag: $PREVIOUS_TAG"      # Generate changelog from commit messages
       - name: Generate changelog
         id: changelog
+        shell: bash
         run: |
           CURRENT_TAG=${GITHUB_REF#refs/tags/}
           PREVIOUS_TAG="${{ steps.previous_tag.outputs.previous_tag }}"
-
+          
           echo "## Changes in $CURRENT_TAG" > changelog.md
           echo "" >> changelog.md
-
+          
           # Get commit messages between tags
           if [ "$PREVIOUS_TAG" != "" ]; then
             echo "### 📝 Commits since $PREVIOUS_TAG:" >> changelog.md
@@ -237,13 +237,13 @@ jobs:
             echo "### 📝 All commits:" >> changelog.md
             git log --pretty=format:"- %s (%h)" >> changelog.md
           fi
-
+          
           echo "" >> changelog.md
           echo "**Full Changelog**: https://github.com/${{ github.repository }}/compare/${PREVIOUS_TAG}...${CURRENT_TAG}" >> changelog.md
-
+          
           # Read the changelog content
           CHANGELOG_CONTENT=$(cat changelog.md)
-
+          
           # Set output with proper escaping
           echo "content<<EOF" >> $GITHUB_OUTPUT
           echo "$CHANGELOG_CONTENT" >> $GITHUB_OUTPUT
