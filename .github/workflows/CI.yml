@@ -50,4 +50,27 @@ jobs:
         run: dotnet build --configuration Release --no-restore
 
       - name: Run tests
-        run: dotnet test --no-restore --verbosity normal
+        run: |
+          # Test the latest framework first as primary validation
+          echo "Running tests for .NET 9.0 (primary)..."
+          dotnet test PersianDate.sln --framework net9.0 --no-restore --verbosity normal --configuration Release
+
+          # Test other frameworks for compatibility
+          echo "Running tests for .NET 8.0..."
+          dotnet test PersianDate.sln --framework net8.0 --no-restore --verbosity normal --configuration Release
+
+          echo "Running tests for .NET 7.0..."
+          dotnet test PersianDate.sln --framework net7.0 --no-restore --verbosity normal --configuration Release
+
+          echo "Running tests for .NET 6.0..."
+          dotnet test PersianDate.sln --framework net6.0 --no-restore --verbosity normal --configuration Release
+
+          echo "Running tests for .NET 5.0..."
+          dotnet test PersianDate.sln --framework net5.0 --no-restore --verbosity normal --configuration Release
+
+      - name: Upload test results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: test-results
+          path: TestResults/**/*
