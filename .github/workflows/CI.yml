@@ -44,10 +44,10 @@ jobs:
           dotnet-version: "9.x.x"
 
       - name: Restore dependencies
-        run: dotnet restore
+        run: dotnet restore PersianDate.slnx
 
       - name: Build solution
-        run: dotnet build --configuration Release --no-restore
+        run: dotnet build PersianDate.slnx --configuration Release --no-restore
 
       - name: Run tests
         run: |
