@@ -11,11 +11,17 @@ Convert Gregorian (Miladi) dates to Solar Hijri (Shamsi) dates with ease!
 
 ## Features
 
+### Core Features
 - Convert Gregorian dates to Shamsi (Persian) dates
 - Support for both `DateTime` and `DateTimeOffset`
 - Get Shamsi year, month, and day components
 - Get Shamsi month and day names
 - Extension methods for easy conversion
+
+### ✨ New in v1.9.3 - Advanced Features
+- **🎨 Enhanced Formatting Options**: Multiple format styles, Persian/English digits, custom patterns
+- **🔍 Date Parsing and Validation**: Parse Persian date strings with comprehensive validation
+- **🌐 Localization and Culture Support**: Full Persian and English culture support with RTL text
 
 ## Installation
 
@@ -57,6 +63,136 @@ Console.WriteLine($"Short Day Name: {shamsiDayShortName}");
 // Output: Short Day Name: سه‌
 ```
 
+### ✨ Enhanced Formatting Options (New in v1.9.3)
+
+#### Multiple Format Styles
+```csharp
+using PersianDate;
+
+DateTime date = new DateTime(2024, 3, 20);
+
+// Predefined format styles
+string short = ShamsiDateFormatter.Format(date, ShamsiFormatStyle.Short);
+// Output: ۱۴۰۳/۱/۱
+
+string medium = ShamsiDateFormatter.Format(date, ShamsiFormatStyle.Medium);
+// Output: ۱ فرو ۱۴۰۳
+
+string long = ShamsiDateFormatter.Format(date, ShamsiFormatStyle.Long);
+// Output: ۱ فروردین ۱۴۰۳
+
+string full = ShamsiDateFormatter.Format(date, ShamsiFormatStyle.Full);
+// Output: چهارشنبه، ۱ فروردین ۱۴۰۳
+```
+
+#### Custom Format Patterns
+```csharp
+// Custom patterns with Persian digits (default)
+string custom1 = ShamsiDateFormatter.Format(date, "yyyy/MM/dd");
+// Output: ۱۴۰۳/۰۱/۰۱
+
+string custom2 = ShamsiDateFormatter.Format(date, "dddd، dd MMMM yyyy");
+// Output: چهارشنبه، ۰۱ فروردین ۱۴۰۳
+
+// English digits
+string english = ShamsiDateFormatter.FormatWithEnglishDigits(date, "yyyy/MM/dd");
+// Output: 1403/01/01
+```
+
+#### Time Formatting
+```csharp
+DateTime dateTime = new DateTime(2024, 3, 20, 14, 30, 45);
+
+string withTime = ShamsiDateFormatter.Format(dateTime, "yyyy/MM/dd HH:mm:ss");
+// Output: ۱۴۰۳/۰۱/۰۱ ۱۴:۳۰:۴۵
+
+string timeOnly = ShamsiDateFormatter.FormatTime(dateTime, "HH:mm");
+// Output: ۱۴:۳۰
+```
+
+### 🔍 Date Parsing and Validation (New in v1.9.3)
+
+#### Parse Persian Date Strings
+```csharp
+using PersianDate;
+
+// Parse various formats
+DateTime parsed1 = ShamsiDateParser.Parse("۱۴۰۳/۱/۱");
+DateTime parsed2 = ShamsiDateParser.Parse("1403/1/1");
+DateTime parsed3 = ShamsiDateParser.Parse("1403-01-01");
+
+// Safe parsing with TryParse
+if (ShamsiDateParser.TryParse("۱۴۰۳/۱۲/۲۹", out DateTime result))
+{
+    Console.WriteLine($"Parsed: {result}");
+}
+
+// Strict validation
+var validation = ShamsiDateParser.ParseAndValidate("1403/13/1");
+if (!validation.IsValid)
+{
+    Console.WriteLine($"Error: {validation.ErrorMessage}");
+    // Output: Error: Month must be between 1 and 12
+}
+```
+
+#### Validation Options
+```csharp
+// Different validation modes
+bool isValid1 = ShamsiDateParser.IsValidShamsiDate(1403, 12, 30); // false (invalid day)
+bool isValid2 = ShamsiDateParser.IsValidShamsiDate(1403, 6, 31);  // false (month 6 has max 31 days)
+bool isValid3 = ShamsiDateParser.IsValidShamsiDate(1403, 1, 31);  // true
+
+// Parse with custom validation
+var strictResult = ShamsiDateParser.ParseAndValidate("1403/12/30", ValidationMode.Strict);
+var lenientResult = ShamsiDateParser.ParseAndValidate("1403/12/30", ValidationMode.Lenient);
+```
+
+### 🌐 Localization and Culture Support (New in v1.9.3)
+
+#### Persian Culture
+```csharp
+using PersianDate;
+
+DateTime date = new DateTime(2024, 3, 20);
+var persianCulture = ShamsiCultureInfo.Persian;
+
+// Persian formatting with Persian digits and month names
+string persian = ShamsiLocalizedFormatter.Format(date, "dd MMMM yyyy", persianCulture);
+// Output: ۰۱ فروردین ۱۴۰۳
+
+// Extension method for Persian culture
+string persianExt = date.ToShamsiString(ShamsiFormatStyle.Long, persianCulture);
+// Output: ۱ فروردین ۱۴۰۳
+```
+
+#### English Culture
+```csharp
+var englishCulture = ShamsiCultureInfo.English;
+
+// English formatting with English digits and transliterated names
+string english = ShamsiLocalizedFormatter.Format(date, "dd MMMM yyyy", englishCulture);
+// Output: 01 Farvardin 1403
+
+// Extension method for English culture
+string englishExt = date.ToShamsiString(ShamsiFormatStyle.Full, englishCulture);
+// Output: Wednesday, 1 Farvardin 1403
+```
+
+#### Culture-Specific Properties
+```csharp
+// Persian culture properties
+Console.WriteLine(persianCulture.DisplayName);        // فارسی (ایران)
+Console.WriteLine(persianCulture.IsRightToLeft);      // true
+Console.WriteLine(persianCulture.UsesPersianDigits);  // true
+Console.WriteLine(persianCulture.DateSeparator);      // /
+
+// English culture properties  
+Console.WriteLine(englishCulture.DisplayName);        // English
+Console.WriteLine(englishCulture.IsRightToLeft);      // false
+Console.WriteLine(englishCulture.UsesPersianDigits);  // false
+```
+
 ### Extension Methods
 
 ```csharp
@@ -82,6 +218,10 @@ Console.WriteLine(dateTime.ToLongShamsiDate());
 
 Console.WriteLine(dateTimeOffset.ToLongShamsiDate());
 // Output: پنجشنبه 13 مهر 1402
+
+// New localized extensions
+Console.WriteLine(dateTime.ToShamsiString(ShamsiFormatStyle.Full, ShamsiCultureInfo.English));
+// Output: Thursday, 13 Mehr 1402
 ```
 
 ### Converting to Gregorian
@@ -116,6 +256,52 @@ Console.WriteLine($"Gregorian Day: {gregorianDay}");
 - .NET 8.0
 - .NET 9.0
 
+## 📚 API Reference
+
+### ShamsiDateFormatter
+- `Format(DateTime, ShamsiFormatStyle)` - Format with predefined styles
+- `Format(DateTime, string)` - Format with custom pattern (Persian digits)
+- `FormatWithEnglishDigits(DateTime, string)` - Format with English digits
+- `FormatTime(DateTime, string)` - Format time components only
+- `ConvertToPersianDigits(string)` - Convert English to Persian digits
+
+### ShamsiDateParser
+- `Parse(string)` - Parse Persian date string to DateTime
+- `TryParse(string, out DateTime)` - Safe parsing with boolean result
+- `ParseAndValidate(string, ValidationMode?)` - Parse with validation details
+- `IsValidShamsiDate(int year, int month, int day)` - Validate date components
+
+### ShamsiCultureInfo
+- `Persian` - Persian culture (fa-IR) with Persian digits and RTL support
+- `English` - English culture (en-US) with English digits and transliterated names
+- `CreateCulture(string)` - Create custom culture
+
+### ShamsiLocalizedFormatter
+- `Format(DateTime, string, ShamsiCultureInfo)` - Culture-aware formatting
+
+### Extension Methods
+- `ToShamsiString(ShamsiFormatStyle, ShamsiCultureInfo?)` - Convert to localized Shamsi string
+- `ToShamsiDate()` - Convert to basic Shamsi date string
+- `ToShortShamsiDate()` - Convert to short format
+- `ToLongShamsiDate()` - Convert to long format with day name
+
+### Format Patterns
+| Pattern | Description | Example (Persian) | Example (English) |
+|---------|-------------|-------------------|-------------------|
+| `yyyy` | 4-digit year | ۱۴۰۳ | 1403 |
+| `yy` | 2-digit year | ۰۳ | 03 |
+| `MMMM` | Full month name | فروردین | Farvardin |
+| `MMM` | Abbreviated month | فرو | Far |
+| `MM` | 2-digit month | ۰۱ | 01 |
+| `M` | Month number | ۱ | 1 |
+| `dddd` | Full day name | چهارشنبه | Wednesday |
+| `ddd` | Abbreviated day | چهار | Wed |
+| `dd` | 2-digit day | ۰۱ | 01 |
+| `d` | Day number | ۱ | 1 |
+| `HH` | 24-hour format | ۱۴ | 14 |
+| `mm` | Minutes | ۳۰ | 30 |
+| `ss` | Seconds | ۴۵ | 45 |
+
 ## Getting Started
 
 1. Install [.NET 9.0 SDK](https://dotnet.microsoft.com/download/dotnet/9.0)
@@ -144,6 +330,7 @@ Console.WriteLine($"Gregorian Day: {gregorianDay}");
 
 | Version | Changes                                                                                                                    |
 | ------- | -------------------------------------------------------------------------------------------------------------------------- |
+| 1.9.3   | **🚀 Major Feature Release**: Enhanced Formatting Options, Date Parsing & Validation, Localization & Culture Support with 191 comprehensive tests |
 | 1.9.2   | Remove .NET 5.0 support and modernize CI/CD workflows with automated changelog generation                                  |
 | 1.9.1   | Add support for older .NET versions (netstandard2.0, netstandard2.1, netcoreapp3.1) and .NET 9.0                           |
 | 1.0.9   | Upgraded to .NET 9.0                                                                                                       |

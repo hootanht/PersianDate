@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
-using PersianDate.Utills;
+using PersianDate.Utils;
 
-namespace PersianDate;
+namespace PersianDate.Core;
 /// <summary>
 /// Provides methods to convert Persian (Shamsi) dates to Gregorian dates.
 /// <example>

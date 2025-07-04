@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Globalization;
 
-namespace PersianDate;
+namespace PersianDate.Core;
 
 /// <summary>
 /// Provides methods to convert Gregorian dates to Persian (Shamsi) dates.

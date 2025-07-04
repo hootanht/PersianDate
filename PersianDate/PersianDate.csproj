@@ -8,16 +8,16 @@
 		<Authors>hootanht</Authors>
 		<PackageIcon>icon.png</PackageIcon>
 		<PackageIconUrl />
-		<Description>Persian Data Library is a library that can be convert Gregorian (Gregorian)
-			year to Solar Hijri (Shamsi) year in simplest way!</Description>
+		<Description>Persian Date Library provides comprehensive Persian (Shamsi/Jalali) calendar functionality including date conversion, advanced formatting options, date parsing and validation, and full localization support for Persian and English cultures.</Description>
 		<Copyright>© 2025</Copyright>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageId>PersianDateShamsi</PackageId>
-	<PackageTags>persian,persian calender,persian date,shamsi,jalali</PackageTags>
-		<PackageReleaseNotes>Remove .NET 5.0 support and modernize CI/CD workflows with automated changelog generation</PackageReleaseNotes>
+	<PackageTags>persian,shamsi,jalali,persian calendar,persian date,formatting,parsing,localization,culture</PackageTags>
+		<PackageReleaseNotes>Major feature release: Enhanced Formatting Options, Date Parsing &amp; Validation, Localization &amp; Culture Support with 191 comprehensive tests</PackageReleaseNotes>
 		<NeutralLanguage>en-US</NeutralLanguage>
 		<PackageProjectUrl>https://github.com/hootanht/PersianDate</PackageProjectUrl>
-		<Version>1.9.2</Version>		<RepositoryUrl>https://github.com/hootanht/PersianDate</RepositoryUrl>
+		<Version>1.9.3</Version>
+		<RepositoryUrl>https://github.com/hootanht/PersianDate</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
 		<ImplicitUsings>disable</ImplicitUsings>
 		<Nullable>enable</Nullable>
@@ -32,7 +32,7 @@
 		<EnablePackageValidation>true</EnablePackageValidation>
 	</PropertyGroup>
 	<PropertyGroup>
-		<VersionPrefix>1.9.2</VersionPrefix>
+		<VersionPrefix>1.9.3</VersionPrefix>
 		<VersionSuffix></VersionSuffix>
 	</PropertyGroup>
 

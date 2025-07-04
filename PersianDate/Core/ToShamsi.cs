@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace PersianDate;
+namespace PersianDate.Core;
 
 /// <summary>
 /// Provides extension methods to convert Gregorian dates to Persian (Shamsi) dates.

@@ -2,7 +2,7 @@
 using System.Globalization;
 using System.Linq;
 
-namespace PersianDate.Utills;
+namespace PersianDate.Utils;
 
 /// <summary>
 /// Provides utility methods for string operations.
