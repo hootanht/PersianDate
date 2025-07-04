@@ -66,7 +66,7 @@ jobs:
           dotnet test PersianDate.slnx --framework net6.0 --no-restore --verbosity normal --configuration Release
 
           echo "Running tests for .NET 5.0..."
-          dotnet test PersianDate.slnx --framework net5.0 --no-restore --verbosity normal --configuration Release
+          dotnet test PersianDate.sln --framework net5.0 --no-restore --verbosity normal --configuration Release
 
       - name: Upload test results
         uses: actions/upload-artifact@v4
