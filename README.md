@@ -18,7 +18,8 @@ Convert Gregorian (Miladi) dates to Solar Hijri (Shamsi) dates with ease!
 - Get Shamsi month and day names
 - Extension methods for easy conversion
 
-### ✨ New in v1.9.3 - Advanced Features
+### ✨ New in v2.0.0
+- **🚀 .NET 10 Support**: Full support for .NET 10.0
 - **🎨 Enhanced Formatting Options**: Multiple format styles, Persian/English digits, custom patterns
 - **🔍 Date Parsing and Validation**: Parse Persian date strings with comprehensive validation
 - **🌐 Localization and Culture Support**: Full Persian and English culture support with RTL text
@@ -255,6 +256,7 @@ Console.WriteLine($"Gregorian Day: {gregorianDay}");
 - .NET 7.0
 - .NET 8.0
 - .NET 9.0
+- .NET 10.0
 
 ## 📚 API Reference
 
@@ -325,7 +327,7 @@ PersianDate/
 
 ## Getting Started
 
-1. Install [.NET 9.0 SDK](https://dotnet.microsoft.com/download/dotnet/9.0)
+1. Install [.NET 10.0 SDK](https://dotnet.microsoft.com/download/dotnet/10.0)
 2. Clone the repository:
    ```sh
    git clone https://github.com/hootanht/PersianDate.git
@@ -351,6 +353,7 @@ PersianDate/
 
 | Version | Changes                                                                                                                    |
 | ------- | -------------------------------------------------------------------------------------------------------------------------- |
+| 2.0.0   | **🚀 Major Release**: Added support for .NET 10.0                                                                          |
 | 1.9.3   | **🚀 Major Feature Release**: Enhanced Formatting Options, Date Parsing & Validation, Localization & Culture Support with 191 comprehensive tests |
 | 1.9.2   | Remove .NET 5.0 support and modernize CI/CD workflows with automated changelog generation                                  |
 | 1.9.1   | Add support for older .NET versions (netstandard2.0, netstandard2.1, netcoreapp3.1) and .NET 9.0                           |

@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-This is a .NET library for Persian (Shamsi/Jalali) calendar operations with comprehensive date conversion, formatting, parsing, and localization features. The library targets .NET 6-9 and follows a modular architecture with explicit namespace organization.
+This is a .NET library for Persian (Shamsi/Jalali) calendar operations with comprehensive date conversion, formatting, parsing, and localization features. The library targets .NET 6-10 and follows a modular architecture with explicit namespace organization.
 
 ## Architecture & Module Structure
 
@@ -34,13 +34,13 @@ This is a .NET library for Persian (Shamsi/Jalali) calendar operations with comp
 # Essential commands for development
 dotnet restore PersianDate.slnx
 dotnet build PersianDate.slnx --configuration Release
-dotnet test PersianDate.slnx --framework net9.0  # Primary target
-dotnet test PersianDate.slnx  # All frameworks (net6.0-net9.0)
+dotnet test PersianDate.slnx --framework net10.0  # Primary target
+dotnet test PersianDate.slnx  # All frameworks (net6.0-net10.0)
 ```
 
 ### Project Configuration
 
-- **Multi-targeting**: net6.0;net7.0;net8.0;net9.0 (update both projects)
+- **Multi-targeting**: net6.0;net7.0;net8.0;net9.0;net10.0 (update both projects)
 - **Nullable enabled**: All code uses nullable reference types
 - **LangVersion**: Latest C# features (currently 13.0)
 - **ImplicitUsings disabled**: Explicit using statements required
